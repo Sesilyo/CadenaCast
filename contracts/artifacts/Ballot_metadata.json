@@ -1,0 +1,59 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "admin",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/ballot.sol": "Ballot"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/ballot.sol": {
+			"keccak256": "0x6a7d57b6c93230b38c874791a87066121dac5f294f3b4ea44e9b04d73e244031",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://a15eb8184a3fdcdb36fb71f681bb391be47ee32dbbc2f1eb0031da1fe2da414f",
+				"dweb:/ipfs/QmXnh59T8mNtwMTamKgPpx6d5EjZYNKuxAey28m4FHepdQ"
+			]
+		}
+	},
+	"version": 1
+}
