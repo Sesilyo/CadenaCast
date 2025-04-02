@@ -67,6 +67,12 @@ select {
     border-radius: 5px;
 }
 
+#places-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
 .middle-name-container {
     display: flex;
     flex-direction: column;
