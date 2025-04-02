@@ -10,34 +10,44 @@
     <h1>Election 2025</h1>
     <br>
 
-   <!--- <span class="space"><span class="box1">By Personal Info </span></span> 
-    <span class="box2">By National ID QR</span> !-->
+   <span class="box1">Personal information </span>
+    
 
     <br><br>
     <p class="p1">Please enter correct information.</p>
 
     <form>
-        <p>First Name</p>
+        <p class="first-name">First Name</p>
         <input id="input-first-name" type="text" required>
+
         <label for="suffix">Suffix</label>
         <select id="suffix" name="suffix">
         <option value="None">N/A</option>
         <option value="Senior">sr.</option>
         <option value="Junior">jr.</option>
         <option value="Third">III</option>
-        <option value="Otheres">Others(please specify)</option>
+        <option value="Others">Others(please specify)</option>
         </select>
+
         <p>No middle name</p>
         <input type="checkbox">
         <p>Last Name</p>
         <input type="text" required>        
         <br>
-        <p>Date of Birth (MM/DD/YYYY)</p><br>
-        <p>Address</p><br>
+        <p>Date of Birth (MM/DD/YYYY)</p>
+        <input id="input-date" type="date" required>
+        <br>
+        <p>Address</p>
+        <input id="input-address" type="text" required>
         <p>national ID Card Number</p>
+        <input id="input-national-ID" type="text" required>
+        <br>
+        <p>By clicking continue, you agree with <a span href="https://national-id.gov.ph/#">Terms and Conditions</span></a> 
+            and <a span href="https://national-id.gov.ph/#">Private Policy</span></a></p>
         <button type="submit" class="button1">Continue</button>
-        <!-- let's go team Jomafa Nalang -->
     </form>
+
+   
 
     <script src="hackaton.js"></script>
 </body>
