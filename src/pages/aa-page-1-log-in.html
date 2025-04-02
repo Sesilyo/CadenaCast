@@ -49,19 +49,19 @@
             <input id="input-date" type="date" required>
             <br>
 
-            <p>Region</p>
-            <input id="input-region" type="text" required>
-            <p>Province</p>
-            <input id="input-province" type="text" required>
-            <p>City/Municipality</p>
-            <input id="input-city-municipality" type="text" required>
-            
+            <div id="places-container">
+                <p>Region</p>
+                <input id="input-region" type="text" required>
+                <p>Province</p>
+                <input id="input-province" type="text" required>
+                <p>City/Municipality</p>
+                <input id="input-city-municipality" type="text" required>               
+            </div>
 
             <div class="national-id-container">
                 <label for="input-national-ID">National ID Card Number</label>
-                <span class="right-text">(Optional)</span>
             </div>
-            <input id="input-national-ID" type="text" placeholder="- Optional -" required>
+            <input id="input-national-ID" type="text" required>
             <br>
 
             <p>By clicking continue, you agree with <a span href="https://national-id.gov.ph/#">Terms and Conditions</span></a> 
@@ -69,9 +69,5 @@
             <button type="submit" class="button1">Continue</button>
         </form>
     </div>
-
-   
-
-    <script src="hackaton.js"></script>
 </body>
 </html>
