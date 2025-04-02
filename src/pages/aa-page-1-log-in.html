@@ -7,6 +7,15 @@
     <title>CadenaCast</title>
 </head>
 <body>
+    <div id="popup" class="popup">
+        <p><h1>Consent</h1></p>
+        <p>By clicking <span><strong>“Proceed”</strong></span>, I hereby give consent to the Philippine Statistics Authority (PSA) to use my demographic information 
+            (i.e. First Name, Middle Name (optional), Last Name, and Date of Birth) and Facial Image, as submitted through the National 
+            ID website, to verify my identity and retrieve my digital National ID.</p>
+        <button onclick="closePopup()" class="proceed">Proceed</button>
+      </div>
+
+      
     <h1>Election 2025</h1>
     <br>
 
@@ -19,10 +28,10 @@
     <div class="form-container">
         <form>
             <p class="first-name">First Name</p>
-            <input id="input-first-name" type="Ftext" required>
+            <input id="input-first-name" type="text" required>
 
             <label for="suffix">Suffix</label>
-            <select id="suffix" name="suffix">
+            <select id="input-suffix" name="suffix">
             <option value="None">N/A</option>
             <option value="Senior">Sr.</option>
             <option value="Junior">Jr.</option>
@@ -31,7 +40,7 @@
             </select>
 
             <div class="middle-name-container">
-                <div class="middle-name-label">
+                <div id="input-middle-name" class="middle-name-label">
                     <p>Middle Name</p>
                     <div class="no-middle-name">
                         <input type="checkbox" id="no-middle-name">
@@ -42,24 +51,36 @@
             </div>
 
             <p>Last Name</p>
-            <input type="text" required>        
+            <input id="input-last-name" type="text" required>        
             <br>
             
             <p>Date of Birth (MM/DD/YYYY)</p>
             <input id="input-date" type="date" required>
             <br>
-
-            <p>Address</p>
-            <input id="input-address" type="text" required>
             <br>
-            <br>
-
-            <div class="national-id-container">
-                <label for="input-national-ID">National ID Card Number</label>
-                <span class="right-text">(Optional)</span>
+            
+            <div class="location-container">
+                <div class="location-box">
+                    <label for="input-region">Region</label>
+                    <input type="text" id="input-region" placeholder="Enter your region" required>
+                </div>
+            
+                <div class="location-box">
+                    <label for="input-province">Province</label>
+                    <input type="text" id="input-province" placeholder="Enter your province" required>
+                </div>
+            
+                <div class="location-box">
+                    <label for="input-city">City/Municipality</label>
+                    <input type="text" id="input-city" placeholder="Enter your city/municipality" required>
+                </div>
             </div>
-            <input id="input-national-ID" type="text" placeholder="- Optional -" required>
+            
+
+            <p>National ID Card Number</p>
+            <input id="input-national-id" type="text" required>        
             <br>
+
 
             <p>By clicking continue, you agree with <a span href="https://national-id.gov.ph/#">Terms and Conditions</span></a> 
                 and <a span href="https://national-id.gov.ph/#">Private Policy</span></a></p>
@@ -69,6 +90,7 @@
 
    
 
-    <script src="hackaton.js"></script>
+    <script src="../../scripts/aa-react-page-1-log-in.js"></script>
 </body>
 </html>
+
