@@ -23,8 +23,45 @@ form {
 }
 
 
+input[type="Ftext"], select {
+    width: 600px;
+    padding: 5px;
+    margin: 5px 0;
+    border-radius: 5px;
+}
+
+select {
+    width: 60px !important;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.middle-name-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.middle-name-label {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.no-middle-name {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.no-middle-name label {
+    font-size: 13px;
+}
+
 input[type="text"], select {
-    width: 200px;
+    width: 709px;
     padding: 5px;
     margin: 5px 0;
     border-radius: 5px;
@@ -35,12 +72,43 @@ input[type="checkbox"] {
     border-radius: 5px;
 }
 
+input[type="date"] {
+    width: 709px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.national-id-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.right-text {
+    font-size: 16px;
+    opacity: 0.6
+}
+
 .button1{
-    width: 80%;
+    width: 100%;
     height: 60px;
-    margin-left: 10%;
+    margin-left: 0%;
     background-color: blue;
     color: white;
 
 
+}
+
+.form-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 100vh;
+    padding-left: 20%; 
+}
+
+form {
+    width: 60%;
+    margin-left: 10%; 
 }

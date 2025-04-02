@@ -16,36 +16,56 @@
     <br><br>
     <p class="p1">Please enter correct information.</p>
 
-    <form>
-        <p class="first-name">First Name</p>
-        <input id="input-first-name" type="text" required>
+    <div class="form-container">
+        <form>
+            <p class="first-name">First Name</p>
+            <input id="input-first-name" type="Ftext" required>
 
-        <label for="suffix">Suffix</label>
-        <select id="suffix" name="suffix">
-        <option value="None">N/A</option>
-        <option value="Senior">sr.</option>
-        <option value="Junior">jr.</option>
-        <option value="Third">III</option>
-        <option value="Others">Others(please specify)</option>
-        </select>
+            <label for="suffix">Suffix</label>
+            <select id="suffix" name="suffix">
+            <option value="None">N/A</option>
+            <option value="Senior">Sr.</option>
+            <option value="Junior">Jr.</option>
+            <option value="Third">III</option>
+            <option value="Others">Others(please specify)</option>
+            </select>
 
-        <p>No middle name</p>
-        <input type="checkbox">
-        <p>Last Name</p>
-        <input type="text" required>        
-        <br>
-        <p>Date of Birth (MM/DD/YYYY)</p>
-        <input id="input-date" type="date" required>
-        <br>
-        <p>Address</p>
-        <input id="input-address" type="text" required>
-        <p>national ID Card Number</p>
-        <input id="input-national-ID" type="text" required>
-        <br>
-        <p>By clicking continue, you agree with <a span href="https://national-id.gov.ph/#">Terms and Conditions</span></a> 
-            and <a span href="https://national-id.gov.ph/#">Private Policy</span></a></p>
-        <button type="submit" class="button1">Continue</button>
-    </form>
+            <div class="middle-name-container">
+                <div class="middle-name-label">
+                    <p>Middle Name</p>
+                    <div class="no-middle-name">
+                        <input type="checkbox" id="no-middle-name">
+                        <label for="no-middle-name">No middle name</label>
+                    </div>
+                </div>
+                <input type="text">
+            </div>
+
+            <p>Last Name</p>
+            <input type="text" required>        
+            <br>
+            
+            <p>Date of Birth (MM/DD/YYYY)</p>
+            <input id="input-date" type="date" required>
+            <br>
+
+            <p>Address</p>
+            <input id="input-address" type="text" required>
+            <br>
+            <br>
+
+            <div class="national-id-container">
+                <label for="input-national-ID">National ID Card Number</label>
+                <span class="right-text">(Optional)</span>
+            </div>
+            <input id="input-national-ID" type="text" placeholder="- Optional -" required>
+            <br>
+
+            <p>By clicking continue, you agree with <a span href="https://national-id.gov.ph/#">Terms and Conditions</span></a> 
+                and <a span href="https://national-id.gov.ph/#">Private Policy</span></a></p>
+            <button type="submit" class="button1">Continue</button>
+        </form>
+    </div>
 
    
 
