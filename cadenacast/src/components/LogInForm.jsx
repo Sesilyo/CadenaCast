@@ -1,3 +1,4 @@
+import LocationDropdown from './LocationDropdown.jsx';
 
 function LogInForm()
 {
@@ -14,11 +15,13 @@ function LogInForm()
             <label htmlFor="input-birthDate">Birth Date</label>
             <input id="input-birthDate" type="date"></input>
             
-            <div id="places-container">
-                <label>Region</label>
-                <label>Province</label>
-                <label>City/Municipality</label>
-            </div>
+            <LocationDropdown />
+
+            <label htmlFor="input-nationalIDNumber">National ID Card Number</label>
+            <input id="input-nationalIDNumber" type="value"></input>
+
+            <p>By clicking 'Continue' you agree with the Terms and Private Policy</p>
+            <input type="submit"></input>
         </>
     );
 }
