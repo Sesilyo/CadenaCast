@@ -1,0 +1,220 @@
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 60px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    opacity: 0; 
+    transition: opacity 0.5s ease-in-out;  
+  }
+  
+  .popup.show {
+    display: block;
+    opacity: 1;  
+  }
+
+.proceed{
+
+    background-color: black;
+    color: white;
+    border: 2px solid black;
+    padding: 1%;
+    width: 100%;
+    display: inline-block;
+    border-radius: 100px;
+    text-align: center;
+}
+  
+
+.elections-heading {
+    font-family: 'Bebas Neue', 'Arial Narrow', Impact, sans-serif;
+    line-height: 1;
+    font-size: 48px; 
+    font-weight: 700;
+    letter-spacing: 1px; 
+    text-transform: uppercase;
+    margin: 0;
+    text-align: center;
+    
+}
+
+.powered-by {
+    font-family: 'Bebas Neue', 'Arial Narrow', Impact, sans-serif;
+    font-size: 20px; 
+    font-weight: 700;
+    letter-spacing: 1px; 
+    text-transform: uppercase;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.img{
+    margin-top: -21px;
+    margin-bottom: 20px;
+    margin-left: 46.5%;
+    width: 120px;
+    height: auto;
+}
+
+.box1{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 200%;
+    margin-left: 27%;
+    background-color: black;
+    color: white;
+    border: 2px solid black;
+    padding: 1%;
+    width: 45%;
+    border-radius: 100px;
+    display: inline-block;
+    text-align: center;
+}
+
+.p1{
+    text-align: center;
+}
+
+.form-container {
+    display: flex;  
+    justify-content: center;  
+    gap: 50px;  
+    padding: 20px;
+    
+}
+
+form {
+    width: 45%; 
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    background-color: lightgray;
+}
+
+@media (max-width: 768px) {
+    .form-container {
+        flex-direction: column; 
+        align-items: center;
+    }
+
+    .form {
+        width: 80%;
+    }
+}
+
+
+form {
+    font-family: Arial, sans-serif;
+}   
+
+#suffix-wrapper {
+    width: 100px;
+}
+
+#input-suffix, 
+#other-suffix {
+    width: 100%; 
+    padding: 5px;
+    margin: 5px 0;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.button2{
+    width: 100%;
+    height: 40px;
+    margin-left: 0%;
+    background-color: black;
+    color: white;
+    border-radius: 100px;
+}
+
+input[type="text"], select {
+    
+    width: 600px;
+    padding: 5px;
+    margin: 5px 0;
+    border-radius: 5px;
+}
+
+select {
+    width: 60px !important;
+    padding: 5px;
+    border-radius: 5px;
+}
+    
+#places-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+
+.middle-name-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.middle-name-label {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.no-middle-name {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.no-middle-name label {
+    font-size: 13px;
+}
+
+input[type="text"], select {
+    width: 709px;
+    padding: 5px;
+    margin: 5px 0;
+    border-radius: 5px;
+}
+
+input[type="checkbox"] {
+    margin: 5px 0;
+    border-radius: 5px;
+}
+
+input[type="date"] {
+    width: 709px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.national-id-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.right-text {
+    font-size: 16px;
+    opacity: 0.6
+}
+
+.button1{
+    width: 100%;
+    height: 60px;
+    margin-left: 0%;
+    background-color: black;
+    color: white;
+    border-radius: 100px;
+}
+
+
