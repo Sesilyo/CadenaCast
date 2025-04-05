@@ -1,5 +1,5 @@
 import logo from '../resources/cadenacast-whitebg.png';
-import '../compontent-styles/logInHeader.css';
+import '../styles/logInHeader.css';
 function LogInHeader()
 {
     return(

@@ -1,19 +1,40 @@
-import '../compontent-styles/sideNavTab.css';
+import '../styles/sideNavTab.css';
+import logo from '../resources/cadenacast-whitebg.png';
+import CountdownTimer from './votingTimer';
 
-function SideNavTab()
-{
-    return(
-        <div id="side-nav-tab">
-            <nav>
-                <ul>
-                    <li><h3>Connect Wallet</h3></li>
-                    <li><h3>Vote</h3></li>
-                    <li><h3>Results</h3></li>
-                    <li><h3>Log-out</h3></li>
-                </ul>
-            </nav>
-        </div>
-    );
-}
+const SideNavTab = () => {
+  return (
+    <div>
+      <div className="logo">ELECTIONS<br />2025</div>
+      <div className="countdown">
+        <div className="label">Voting opens in:</div>
+        <CountdownTimer />
+      </div>
 
-export default SideNavTab
+      <nav className="nav">
+        <a href="#" className="nav-item">
+          🔗 Connect Wallet
+        </a>
+        <a href="#" className="nav-item">
+          🗳️ Vote
+        </a>
+        <a href="#" className="nav-item">
+          📊 Results
+        </a>
+        <a href="#" className="nav-item active">
+          ⚙️ Admin Controls
+        </a>
+      </nav>
+
+      <div className="powered">
+        POWERED BY:
+      </div>
+
+      <div className="bottom-image-container">
+        <img src={logo} alt="Logo" className="bottom-image" />
+      </div>
+    </div>
+  );
+};
+
+export default SideNavTab;
