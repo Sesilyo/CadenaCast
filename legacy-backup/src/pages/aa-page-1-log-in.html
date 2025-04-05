@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="../styles/aa-styles-page-1-log-in.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CadenaCast</title>
@@ -16,28 +17,34 @@
       </div>
 
       
-    <h1>Election 2025</h1>
+    <h1 class="elections-heading">ELECTIONS<br>2025</h1>
+    <div class="powered-by">POWERED BY:</div>
     <br>
 
-   <span class="box1">Personal information </span>
-    
+    <img class="img" src="Cadena Cast.png" alt="Cadena Cast">
 
-    <br><br>
-    <p class="p1">Please enter correct information.</p>
+   <span class="box1">Personal Information </span>
 
     <div class="form-container">
         <form>
+            <p class="p1">Please enter correct information.</p>
             <p class="first-name">First Name</p>
             <input id="input-first-name" type="text" required>
 
-            <label for="suffix">Suffix</label>
-            <select id="input-suffix" name="suffix">
-            <option value="None">N/A</option>
-            <option value="Senior">Sr.</option>
-            <option value="Junior">Jr.</option>
-            <option value="Third">III</option>
-            <option value="Others">Others(please specify)</option>
-            </select>
+            <div id="suffix-wrapper">
+                <label for="input-s">Suffix</label>
+                <select id="input-suffix" name="suffix">
+                    <option value="None">N/A</option>
+                    <option value="Senior">Sr.</option>
+                    <option value="Junior">Jr.</option>
+                    <option value="Third">III</option>
+                    <option value="Others">Others (please specify)</option>
+                </select>
+              
+                <input type="text" id="other-suffix" name="other-suffix" placeholder="Please specify suffix" style="display: none;">
+                
+                <button type="button"  class="button2" id="back-to-dropdown" style="display: none; margin-top: 5px;">Back to Suffix Options</button>
+              </div>
 
             <div class="middle-name-container">
                 <div id="input-middle-name" class="middle-name-label">
@@ -68,8 +75,9 @@
             </div>
 
             <div class="national-id-container">
-                <label for="input-national-ID">National ID Card Number</label>
+                <label for="input-national-ID">National ID Card Number</label>    
             </div>
+
             <input id="input-national-ID" type="text" required>
             <br>
 
@@ -79,7 +87,6 @@
             <button type="submit" class="button1">Continue</button>
         </form>
     </div>
-
    
 
     <script src="../../scripts/aa-react-page-1-log-in.js"></script>

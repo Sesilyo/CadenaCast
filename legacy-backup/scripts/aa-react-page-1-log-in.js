@@ -9,11 +9,31 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-function openPopup() {
-    let popup = document.getElementById("popup");
-    popup.style.display = "block";
-    setTimeout(() => popup.classList.add("show"), 10); 
-}
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const suffixSelect = document.getElementById("input-suffix");
+    const otherSuffixInput = document.getElementById("other-suffix");
+    const backToDropdownBtn = document.getElementById("back-to-dropdown");
+
+    suffixSelect.addEventListener("change", function () {
+        if (suffixSelect.value === "Others") {
+            suffixSelect.style.display = "none"; 
+            otherSuffixInput.style.display = "block"; 
+            backToDropdownBtn.style.display = "inline-block"; 
+            otherSuffixInput.focus();
+        }
+    });
+
+    backToDropdownBtn.addEventListener("click", function () {
+        otherSuffixInput.style.display = "none"; 
+        backToDropdownBtn.style.display = "none";
+        suffixSelect.style.display = "block";
+        suffixSelect.value = "None"; // Reset dropdown to default
+    });
+});
+
+
 
 function closePopup() {
     let popup = document.getElementById("popup");
