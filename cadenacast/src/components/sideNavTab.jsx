@@ -1,3 +1,4 @@
+import '../compontent-styles/sideNavTab.css';
 
 function SideNavTab()
 {
