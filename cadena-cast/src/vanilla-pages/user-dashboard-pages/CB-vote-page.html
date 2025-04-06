@@ -14,7 +14,7 @@
         <div id="logo">ELECTIONS<br>2025</div>
         <div id="countdown">
             <div class="label">Voting opens in:</div>
-            <div id="countdown-timer">
+            <div id="countdown-timer">  
               <span id="days">0d </span>
               <span id="hours">0h </span>
               <span id="minutes">0m </span>
@@ -44,9 +44,9 @@
         <div id="logIn-form">
           <h3 id="positions">Positions</h3>
             <form id="form1">
-                <p><strong><span style="margin-right: 180px;">[Position Place Holder 1]</span>[Position Place Holder 2]</strong></p>
-                <br>
-                <p><strong><span style="margin-right: 180px;">[Position Place Holder 3]</span>[Position Place Holder 4]</strong></p> 
+              <p><strong><span class="position-placeholder" data-position="Position 1" style="margin-right: 160px;">[Position Place Holder 1]</span>&nbsp;&nbsp;&nbsp;<span class="position-placeholder" data-position="Position 2">[Position Place Holder 2]</span></strong></p>
+              <br>
+              <p><strong><span class="position-placeholder" data-position="Position 3" style="margin-right: 160px;">[Position Place Holder 3]</span>&nbsp;&nbsp;&nbsp;<span class="position-placeholder" data-position="Position 4">[Position Place Holder 4]</span></strong></p>               
             </form>
         </div>
     </main>
@@ -57,12 +57,14 @@
       <p id="modal-body">Modal content goes here.</p>
       <div id="modal-actions">
         <button id="cancel-btn" class="modal-button">Cancel</button>
+        <a href="CBA-vote-page.html">
         <button id="confirm-btn" class="modal-button">Confirm</button>
+        </a>
       </div>      
     </div>
   </div>
 
-  <script src="../../scripts/CA-connect-metamask.js"></script>
+  <script src="../../scripts/CB-vote-page.js"></script>
 </body>
 </html>
 
