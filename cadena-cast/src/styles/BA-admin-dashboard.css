@@ -1,236 +1,203 @@
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-  }
-  
-  .admin-container {
-    display: flex;
-    min-height: 100vh;
-  }
-  
-  .sidebar {
-    width: 250px;
-    background-color: #000;
-    color: #fff;
-    padding: 30px 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  
-  .logo {
-    font-family: 'Norwester', sans-serif;
-    font-size: 28px;    
-    margin-bottom: 40px;
-  }
-  
-  .countdown .label {
-    font-size: 12px;
-    color: #fdf7f7;
-  }
-  
-  .countdown .time {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
-  
-  .nav {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .nav li {
-    margin: 10px 0;
-    cursor: pointer;
-    transition: color 0.2s;
-  }
-  
-  .nav li:hover {
-    color: #ccc;
-  }
-  
-  .nav .active {
-    background-color: #fff;
-    color: #000;
-    padding: 6px 8px;
-    border-radius: 4px;
-    font-weight: bold;
-  }
-  
-  .powered {
-    font-size: 10px;
-    color: #bbb;
-  }
-  
-  .main {
-    flex: 1;
-    background: #fff;
-    padding: 40px;
-  }
-  
-  .main h1 {
-    text-align: center;
-    font-size: 28px;
-    font-weight: bold;
-    margin-bottom: 40px;
-  }
-  
-  .status-banner {
-    background-color: #e2e2e2;
-    padding: 15px 20px;
-    border-radius: 25px;
-    width: 790px;
-    margin: 0 auto 40px auto;
-    font-weight: bold;
-  }
-  
-  .controls {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 50px;
-  }
-  
-  .control-card {
-    background-color: #e2e2e2;
-    border-radius: 12px;
-    padding: 20px;
-    width: 200px;
-    text-align: center;
-    transition: box-shadow 0.3s;
-  }
-  
-  .control-card:hover {
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  }
-  
-  .control-card .icon {
-    font-size: 28px;
-    margin-bottom: 10px;
-  }
-  
-  .control-card h2 {
-    margin-bottom: 10px;
-    font-size: 16px;
-  }
-  
-  .control-card p {
-    font-size: 13px;
-    color: #333;
-  }
-  
-  
-  /* Modal Styles */
-  .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .modal-content {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    width: 300px;
-    text-align: center;
-  }
-  
-  .modal-actions {
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-between;
-    gap: 10px; 
-  }
-  
-  .modal-confirm,
-  .modal-close {
-    padding: 10px 15px;
-    border-radius: 4px;
-    cursor: pointer;
-    width: 120px;
-  }
-  
-  
-  .modal-confirm {
-    background-color: #000000;
-    color: white;
-    border: none;
-  }
-  
-  .modal-close {
-    background-color: #636262;
-    color: white;
-    border: none;
-  }
-  
-  .hidden {
-    display: none;
-  }
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
 
+#admin-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+#sidebar {
+  width: 250px;
+  background-color: #000;
+  color: #fff;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#logo {
+  font-family: 'Norwester', sans-serif;
+  font-size: 28px;    
+  margin-bottom: 40px;
+  text-align: center;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #bbb;
+  margin-bottom: 20px;
+}
+
+#countdown {
+  text-align: center;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #bbb;
+  margin-bottom: 20px;
+}
+
+#countdown .label {
+  font-size: 12px;
+  color: #fdf7f7;
+}
+
+#countdown-timer {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+#main-nav {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-item {
+  text-decoration: none;
+  color: white;
+  margin: 15px 0;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.nav-item:hover {
+  background-color: #444;
+}
+
+.nav-item.active {
+  background-color: white;
+  color: black;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+#powered {
+  font-size: 12px;
+  color: #ffffff;
+  text-align: center;
+  margin-top: 80px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+#bottom-image-container {
+  text-align: center;
+}
+
+#bottom-image {
+  width: 50px;
+  height: auto;
+  transform: scale(2,2)
+}
+
+#main {
+  flex: 1;
+  background: #fff;
+  padding: 40px;
+}
+
+#main h1 {
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+
+#status-banner {
+  background-color: #e2e2e2;
+  padding: 15px 20px;
+  border-radius: 25px;
+  width: 790px;
+  margin: 0 auto 40px auto;
+  font-weight: bold;
+}
+
+#controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 50px;
+}
+
+.control-card {
+  background-color: #e2e2e2;
+  border-radius: 12px;
+  padding: 20px;
+  width: 200px;
+  text-align: center;
+  transition: box-shadow 0.3s;
+}
+
+.control-card:hover {
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.control-card .icon {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.control-card h2 {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.control-card p {
+  font-size: 13px;
+  color: #333;
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+  text-align: center;
+}
+
+#modal-actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px; 
+}
+
+.modal-button {
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 120px;
+}
+
+#confirm-btn {
+  background-color: #000000;
+  color: white;
+  border: none;
+}
+
+#cancel-btn {
+  background-color: #636262;
+  color: white;
+  border: none;
+}
 
 .hidden {
-    display: none;
-  }
-  
-  .nav {
-    display: flex;
-    flex-direction: column;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .logo, .countdown {
-    text-align: center;
-    padding-bottom: 20px;
-    border-bottom: 2px solid #bbb;
-    margin-bottom: 20px;
-  }
-  
-  .nav-item {
-    text-decoration: none;
-    color: white;
-    margin: 15px 0;
-    padding: 10px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .nav-item:hover {
-    background-color: #444;
-  }
-  
-  .nav-item.active {
-    background-color: white;
-    color: black;
-    font-weight: bold;
-    padding: 10px;
-    border-radius: 5px;
-  }
-  
-  .powered {
-    font-size: 12px;
-    color: #ffffff;
-    text-align: center;
-    margin-top: 80px;
-    margin-bottom: 10px;
-    font-weight: bold;
-  }
-  
-  .bottom-image-container {
-    text-align: center;
-  }
-  
-  .bottom-image {
-    width: 50px;
-    height: auto;
-    transform: scale(2,2)
-  }
-  
+  display: none;
+}
