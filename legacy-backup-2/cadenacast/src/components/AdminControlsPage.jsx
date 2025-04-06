@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/AdminControls.css';
 import SideNavTab from './SideNavTab.jsx';
-import Modal from './Modal';
+import Modal from './Modal.jsx';
 
 const AdminControlsPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
