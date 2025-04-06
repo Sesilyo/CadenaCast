@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import '../styles/AdminControls.css'; // Import the CSS
-import SideNavTab from './sideNavTab.jsx';
-import Modal from './Modal'; // Import Modal Component
+import '../styles/AdminControls.css';
+import SideNavTab from './SideNavTab.jsx';
+import Modal from './Modal';
 
 const AdminControlsPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -9,7 +9,6 @@ const AdminControlsPage = () => {
   const [modalContent, setModalContent] = useState('');
   const [actionType, setActionType] = useState('');
 
-  // Function to open modal for a specific action
   const openModal = (action) => {
     if (action === 'startElection') {
       setModalTitle('START VOTING');

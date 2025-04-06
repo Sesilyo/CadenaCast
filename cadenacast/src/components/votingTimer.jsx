@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const CountdownTimer = () => {
+const VotingTimer = () => {
   const targetDate = new Date('May 12, 2025 00:00:00').getTime(); // Target date
 
   const [timeLeft, setTimeLeft] = useState({
@@ -46,4 +46,4 @@ const CountdownTimer = () => {
   );
 };
 
-export default CountdownTimer;
+export default VotingTimer;
