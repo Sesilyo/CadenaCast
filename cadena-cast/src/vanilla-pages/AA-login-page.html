@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Log In Page</title>
+    <link rel="stylesheet" href="../styles/AA-login-page.css">
+    <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/norwester">
+<body>
+
+    <header>
+        <p class="elections">Elections<br>2025</p>  
+        <img class="img1" src="logo.png" alt="CadenaCast logo">
+        <p class="powered-by">Powered by: Jomafa Nalang</p>
+    </header>
+
+    <main>
+        <div id="logIn-form">
+            <form class="form1">
+                <h3 id="personal-information">Personal Information</h3>
+                <p>Please provide accurate information to continue</p>
+
+                <label for="input-firstName">First Name</label>
+                <input id="input-firstName" type="text">
+
+                <label for="input-middleName">Middle Name</label>
+                <input id="input-middleName" type="text">
+
+                <label for="input-lastName">Last Name</label>
+                <input id="input-lastName" type="text">
+
+                <label for="input-birthDate">Birth Date</label>
+                <input id="input-birthDate" type="date">
+
+                <!-- Location Dropdown -->
+                <div id="places-container">
+                    <label for="region">Region</label>
+                    <select id="region">
+                      <option value="select-region">-- Select Region --</option>
+                    </select>
+                
+                    <label for="province">Province</label>
+                    <select id="province" disabled>
+                    <option value="select-province">-- Select Province --</option>
+                    </select>
+                
+                    <label for="city">City/Municipality</label>
+                    <select id="city" disabled>
+                      <option value="select-city">-- Select City/Municipality --</option>
+                    </select>
+                  </div>
+
+                <label for="input-nationalIDNumber">National ID Card Number</label>
+                <input id="input-nationalIDNumber" type="text">
+
+                <p>By clicking 'Continue' you agree with the Terms and Privacy Policy</p>
+                <input id="input-submit" type="submit" value="Continue">
+            </form>
+        </div>
+    </main>
+
+    <script src="../scripts/AA-login-page.js"></script>
+</body>
+</html>
