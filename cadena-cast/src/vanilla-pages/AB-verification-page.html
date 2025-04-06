@@ -8,7 +8,6 @@
 <body>
 
     <header>
-
         <div class="header2">
             <p class="elections">Elections<br>2025</p>  
             <img class="img1" src="../resources/cadenacast logos/Cadena Cast-2.png" alt="CadenaCast logo">
@@ -17,13 +16,16 @@
     </header>
 
     <main>
-        <h3>2-Way Authentication</h3>
-
-        <div id="enter-email-container">
-            <form>
+        <div id="logIn-form">
+            <form id="form1">
+                <h3 id="Authentication">2-Way Authentication</h3>
                 <p>Please enter your e-mail for verification</p>
-                <input id="input-email" type="email">
-                <input id="input-submit" type="submit">
+
+                <label for="input-gmail"></label><br>
+                <input placeholder="email@gmail.com" id="input-gmail" type="email">
+                <a href="AA-login-page.html">
+                    <button type="button">Send</button>
+                </a>
             </form>
         </div>
     </main>
