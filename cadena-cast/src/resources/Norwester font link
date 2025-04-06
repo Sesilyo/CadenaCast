@@ -1,0 +1,5 @@
+<link href="https://fonts.cdnfonts.com/css/norwester" rel="stylesheet">
+
+@import url('https://fonts.cdnfonts.com/css/norwester');
+
+font-family: 'Norwester', sans-serif;
