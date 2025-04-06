@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cadena Cast</title>
+  <title>Admin Controls</title>
   <link rel="stylesheet" href="../../styles/CA-connect-metamask-page.css" />
   <link href="https://fonts.cdnfonts.com/css/norwester" rel="stylesheet">
 </head>
 <body>
   <div id="admin-container">
+    <!-- Sidebar -->
     <div id="sidebar">
       <div>
         <div id="logo">ELECTIONS<br>2025</div>
@@ -23,10 +24,10 @@
           </div>
           
         <nav id="main-nav">
-            <a href="./CA-connect-metamask-page.html" class="nav-item">🔗 Connect Wallet</a>
-            <a href="./CB-vote-page.html" class="nav-item">🗳️ Vote</a>
-            <a href="./CC-result-page.html" class="nav-item">📊 Results</a>
-            <a href="./CD-logout.html" class="nav-item">⚙️ Log-Out</a>
+          <a href="./CA-connect-metamask-page.html" class="nav-item">🔗 Connect Wallet</a>
+          <a href="./CB-vote-page.html" class="nav-item">🗳️ Vote</a>
+          <a href="./CC-result-page.html" class="nav-item">📊 Results</a>
+          <a href="./CD-logout.html" class="nav-item">⚙️ Log-Out</a>
         </nav>
 
         <div id="powered">POWERED BY:</div>
@@ -37,21 +38,37 @@
       </div>
     </div>
 
+    <!-- Main content -->
     <div id="main">
-      <h1>Connect Wallet<br>To Cast A Vote</h1>
+      <h1>ADMIN CONTROLS</h1>
 
-     
-    <main>
-        <div id="logIn-form">
-            <form id="form1">
-                <p id="p1">In order to vote, connect your Metamask amount (or other cryptocurrency<br> Wallets). Please don't forget to disconnect after you have voted.
-                </p>
-                    <button type="button" onclick="changeText()">Connect Wallet</button>
-            </form>
+      <div id="status-banner">
+        STATUS OF ELECTION: NOT STARTED
+      </div>
+
+      <div id="controls">
+        <div class="control-card" data-action="startElection">
+          <div class="icon">▶️</div>
+          <h2>START ELECTION</h2>
+          <p>Initiate the voting process and open polls to all registered voters.</p>
         </div>
-    </main>
 
+        <div class="control-card" data-action="pauseVoting">
+          <div class="icon">⏸️</div>
+          <h2>PAUSE VOTING</h2>
+          <p>Temporarily suspend voting activity for system maintenance.</p>
+        </div>
 
+        <div class="control-card" data-action="endElection">
+          <div class="icon">⏹️</div>
+          <h2>END ELECTION</h2>
+          <p>Close voting permanently and prepare for results calculation.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
   <div id="modal" class="modal-overlay hidden">
     <div id="modal-content">
       <h2 id="modal-title">Modal Title</h2>
@@ -66,4 +83,3 @@
   <script src="../../scripts/CA-connect-metamask.js"></script>
 </body>
 </html>
-

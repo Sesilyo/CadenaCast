@@ -26,6 +26,15 @@ header {
     font-family: 'Norwester', sans-serif;
 }
 
+#text-elections {
+    margin-bottom: -3%;
+}
+
+#text-2025 {
+    margin-top: 15px;
+    font-size: 6em;
+}
+
 .logo{
     width: 100px; 
     height: auto;

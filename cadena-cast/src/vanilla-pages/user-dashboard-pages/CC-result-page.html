@@ -40,17 +40,31 @@
     <div id="main">
       <h1>Connect Wallet<br>To Cast A Vote</h1>
 
-     
-    <main>
-        <div id="logIn-form">
-            <form id="form1">
-                <p id="p1">In order to vote, connect your Metamask amount (or other cryptocurrency<br> Wallets). Please don't forget to disconnect after you have voted.
-                </p>
-                    <button type="button" onclick="changeText()">Connect Wallet</button>
-            </form>
-        </div>
-    </main>
+      <div id="status-banner">
+        STATUS OF ELECTION: NOT STARTED
+      </div>
 
+      <div id="controls">
+        <div class="control-card" data-action="startElection">
+          <div class="icon">▶️</div>
+          <h2>START ELECTION</h2>
+          <p>Initiate the voting process and open polls to all registered voters.</p>
+        </div>
+
+        <div class="control-card" data-action="pauseVoting">
+          <div class="icon">⏸️</div>
+          <h2>PAUSE VOTING</h2>
+          <p>Temporarily suspend voting activity for system maintenance.</p>
+        </div>
+
+        <div class="control-card" data-action="endElection">
+          <div class="icon">⏹️</div>
+          <h2>END ELECTION</h2>
+          <p>Close voting permanently and prepare for results calculation.</p>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div id="modal" class="modal-overlay hidden">
     <div id="modal-content">
@@ -66,4 +80,5 @@
   <script src="../../scripts/CA-connect-metamask.js"></script>
 </body>
 </html>
+
 
