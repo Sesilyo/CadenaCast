@@ -4,6 +4,7 @@ function LogInForm()
 {
     return(
         <>
+          <form>
             <h3>Personal Information</h3>
             <p>Please provide accurate information to continue</p>
             <label htmlFor="input-firstName">First Name</label>
@@ -22,6 +23,8 @@ function LogInForm()
 
             <p>By clicking 'Continue' you agree with the Terms and Private Policy</p>
             <input type="submit"></input>
+          </form>
+            
         </>
     );
 }

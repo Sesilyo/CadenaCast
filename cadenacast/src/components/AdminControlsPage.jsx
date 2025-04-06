@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/AdminControls.css'; // Import the CSS
-import SideNavTab from './SideNavTab'; // Import Sidebar Component
+import SideNavTab from './SideNavTab.jsx';
 import Modal from './Modal'; // Import Modal Component
 
 const AdminControlsPage = () => {
@@ -92,4 +92,4 @@ const AdminControlsPage = () => {
   );
 };
 
-export default AdminControlsPage;
+export default AdminControlsPage
