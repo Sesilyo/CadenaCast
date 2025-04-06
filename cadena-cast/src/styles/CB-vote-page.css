@@ -202,7 +202,7 @@ body {
     display: none;
   }
 
-#logIn-form {
+#pos {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -230,5 +230,20 @@ body {
     width: 10%;
     border-radius: 100px;
     text-align: center;
-    
 }
+
+.position-link {
+    cursor: pointer;
+    color: black;
+    text-decoration: underline;
+    font-weight: bold;
+    border: solid black;
+    padding: 10px 30px;
+    border-radius: 20px;
+    background-color: white;
+    border-width: 1px;
+  }
+  
+  .position-link:hover {
+    color: #0056b3;
+  }
