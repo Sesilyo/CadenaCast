@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cadena Cast</title>
-  <link rel="stylesheet" href="../../styles/CA-connect-metamask-page.css" />
+  <link rel="stylesheet" href="../../styles/CC-result-page.css" />
   <link href="https://fonts.cdnfonts.com/css/norwester" rel="stylesheet">
 </head>
 <body>
@@ -13,72 +13,49 @@
       <div>
         <div id="logo">ELECTIONS<br>2025</div>
         <div id="countdown">
-            <div class="label">Voting opens in:</div>
-            <div id="countdown-timer">
-              <span id="days">0d </span>
-              <span id="hours">0h </span>
-              <span id="minutes">0m </span>
-              <span id="seconds">0s</span>
-            </div>
+          <div class="label">Voting opens in:</div>
+          <div id="countdown-timer">
+            <span id="days">0d </span>
+            <span id="hours">0h </span>
+            <span id="minutes">0m </span>
+            <span id="seconds">0s</span>
           </div>
-          
+        </div>
         <nav id="main-nav">
-            <a href="./CA-connect-metamask-page.html" class="nav-item">🔗 Connect Wallet</a>
-            <a href="./CB-vote-page.html" class="nav-item">🗳️ Vote</a>
-            <a href="./CC-result-page.html" class="nav-item">📊 Results</a>
-            <a href="./CD-logout.html" class="nav-item">⚙️ Log-Out</a>
+          <a href="./CA-connect-metamask-page.html" class="nav-item">🔗 Connect Wallet</a>
+          <a href="./CB-vote-page.html" class="nav-item">🗳️ Vote</a>
+          <a href="./CC-result-page.html" class="nav-item">📊 Results</a>
+          <a href="./CD-logout.html" class="nav-item">⚙️ Log-Out</a>
         </nav>
-
         <div id="powered">POWERED BY:</div>
-
         <div id="bottom-image-container">
           <img src="../../resources/cadenacast logos/Cadena Cast-1.png" alt="Logo" id="bottom-image" />
         </div>
       </div>
     </div>
 
-    <div id="main">
-      <h1>Connect Wallet<br>To Cast A Vote</h1>
-
-      <div id="status-banner">
-        STATUS OF ELECTION: NOT STARTED
+    <div id="main-content">
+      <div class="heading-container">
+        <h1 class="heading">Current<br><span>Standings</span></h1>
       </div>
 
-      <div id="controls">
-        <div class="control-card" data-action="startElection">
-          <div class="icon">▶️</div>
-          <h2>START ELECTION</h2>
-          <p>Initiate the voting process and open polls to all registered voters.</p>
+      <div class="standings-container">
+        <div class="position-controls">
+          <button class="position-btn active">Positions</button>
+          <button class="position-btn">Position 1</button>
+          <button class="position-btn">Position 2</button>
+          <button class="position-btn">Position 3</button>
+          <button class="position-btn">Position 4</button>
         </div>
 
-        <div class="control-card" data-action="pauseVoting">
-          <div class="icon">⏸️</div>
-          <h2>PAUSE VOTING</h2>
-          <p>Temporarily suspend voting activity for system maintenance.</p>
-        </div>
-
-        <div class="control-card" data-action="endElection">
-          <div class="icon">⏹️</div>
-          <h2>END ELECTION</h2>
-          <p>Close voting permanently and prepare for results calculation.</p>
+        <div class="chart-container">
+          <canvas id="barChart"></canvas>
         </div>
       </div>
     </div>
   </div>
 
-  <div id="modal" class="modal-overlay hidden">
-    <div id="modal-content">
-      <h2 id="modal-title">Modal Title</h2>
-      <p id="modal-body">Modal content goes here.</p>
-      <div id="modal-actions">
-        <button id="cancel-btn" class="modal-button">Cancel</button>
-        <button id="confirm-btn" class="modal-button">Confirm</button>
-      </div>      
-    </div>
-  </div>
-
-  <script src="../../scripts/CA-connect-metamask.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="../../scripts/CC-result-page.js"></script>
 </body>
 </html>
-
-
