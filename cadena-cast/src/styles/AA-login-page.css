@@ -1,16 +1,45 @@
 body {
     margin: 0;
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
     font-family: Arial, sans-serif;
+    gap: 20px;
+    height: 100vh;
+    overflow-y: hidden;
+}
+
+.header2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1; 
+    margin-right: 50px;
 }
 
 header {
-    text-align: center;
-    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 10px 20px;
     font-family: 'Norwester', sans-serif;
 }
 
+.logo{
+    width: 100px; 
+    height: auto;
+    margin-right: 20px; 
+    margin-top: -130px;
+}
+
 .elections {  
-    line-height: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center; 
+    text-align: center; 
+    line-height: 1.2;
     font-size: 48px; 
     font-weight: 700;
     letter-spacing: 1px; 
@@ -38,11 +67,9 @@ header {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
 }
 
-.form1 {
-    margin-top: -70px;
+#form1 {
     width: 48%;
     padding: 20px;
     border: 1px solid black;
@@ -60,6 +87,54 @@ header {
     width: 95%;
     border-radius: 100px;
     text-align: center;
+}
+
+#suffix-wrapper {
+    width: 100px;
+}
+
+#input-suffix, 
+#other-suffix {
+    width: 100%; 
+    padding: 5px;
+    margin: 5px 0;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.back-to-dropdown{
+    width: 100%;
+    height: 40px;
+    background-color: black;
+    color: white;
+    border-radius: 100px;
+    border: none;
+    cursor: pointer;
+    font-size: small;
+}
+
+.middle-name-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.middle-name-label {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.no-middle-name {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.no-middle-name label {
+    font-size: 13px;
 }
 
 input[type="text"],
@@ -95,3 +170,13 @@ input[type="submit"] {
     border-radius: 5px;
 }
   
+button {
+    font-size: 100%;
+    background-color: black;
+    color: white;
+    border: 2px solid black;
+    padding: 5px;
+    width: 100%;
+    border-radius: 100px;
+    text-align: center;
+}

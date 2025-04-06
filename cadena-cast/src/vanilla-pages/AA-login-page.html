@@ -8,22 +8,48 @@
 <body>
 
     <header>
-        <p class="elections">Elections<br>2025</p>  
-        <img class="img1" src="logo.png" alt="CadenaCast logo">
-        <p class="powered-by">Powered by: Jomafa Nalang</p>
+        <div class="header2">
+            <p class="elections">Elections<br>2025</p>  
+            <img class="img1" src="../resources/cadenacast logos/Cadena Cast-2.png" alt="CadenaCast logo">
+            <p class="powered-by">Powered by: Jomafa Nalang</p>
+          </div>
     </header>
 
     <main>
         <div id="logIn-form">
-            <form class="form1">
+            <form id="form1">
                 <h3 id="personal-information">Personal Information</h3>
                 <p>Please provide accurate information to continue</p>
 
-                <label for="input-firstName">First Name</label>
+                <label for="input-firstName">First Name</label><br>
                 <input id="input-firstName" type="text">
 
-                <label for="input-middleName">Middle Name</label>
-                <input id="input-middleName" type="text">
+                <div id="suffix-wrapper">
+                    <label for="input-s">Suffix</label>
+                    <select id="input-suffix" name="suffix">
+                        <option value="None">N/A</option>
+                        <option value="Senior">Sr.</option>
+                        <option value="Junior">Jr.</option>
+                        <option value="Third">III</option>
+                        <option value="Others">Others (please specify)</option>
+                    </select>
+                  
+                    <input type="text" id="other-suffix" name="other-suffix" placeholder="Please specify suffix" style="display: none;">
+                    
+                    <button type="button"  class="back-to-dropdown" id="back-to-dropdown" style="display: none; margin-top: 5px;">Back to Suffix Options</button>
+                  </div>
+                
+
+                  <div class="middle-name-container">
+                    <div id="input-middle-name" class="middle-name-label">
+                        <p>Middle Name</p>
+                        <div class="no-middle-name">
+                            <input type="checkbox" id="no-middle-name">
+                            <label for="no-middle-name">No middle name</label>
+                        </div>
+                    </div>
+                    <input type="text">
+                </div>
 
                 <label for="input-lastName">Last Name</label>
                 <input id="input-lastName" type="text">
@@ -31,7 +57,6 @@
                 <label for="input-birthDate">Birth Date</label>
                 <input id="input-birthDate" type="date">
 
-                <!-- Location Dropdown -->
                 <div id="places-container">
                     <label for="region">Region</label>
                     <select id="region">
@@ -51,9 +76,12 @@
 
                 <label for="input-nationalIDNumber">National ID Card Number</label>
                 <input id="input-nationalIDNumber" type="text">
-
+                
+               
                 <p>By clicking 'Continue' you agree with the Terms and Privacy Policy</p>
-                <input id="input-submit" type="submit" value="Continue">
+                <a href="AB-verification-page.html">
+                    <button type="button">Continue</button>
+                </a>
             </form>
         </div>
     </main>
