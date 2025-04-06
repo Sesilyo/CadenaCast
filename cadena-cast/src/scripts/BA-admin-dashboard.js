@@ -49,7 +49,6 @@ confirmBtn.addEventListener('click', () => {
 
 cancelBtn.addEventListener('click', closeModal);
 
-// Modal Logic
 
 // Voting Timer
 function startVotingCountdown() {
@@ -92,17 +91,43 @@ function startVotingCountdown() {
     startVotingCountdown();
   };
 
-document.addEventListener('DOMContentLoaded', () => {
-  const navLinks = document.querySelectorAll('#main-nav a');
-  const currentPath = window.location.pathname.split('/').pop();
-
-  navLinks.forEach(link => {
-    const linkPath = link.getAttribute('href').split('/').pop();
-    if (linkPath === currentPath) {
-      link.classList.add('active');
-    } else {
-      link.classList.remove('active');
-    }
+  document.addEventListener('DOMContentLoaded', () => {
+    const navLinks = document.querySelectorAll('#main-nav a');
+    const currentPath = window.location.pathname.split('/').pop().toLowerCase();
+  
+    navLinks.forEach(link => {
+      const linkPath = link.getAttribute('href').split('/').pop().toLowerCase();
+      if (linkPath === currentPath) {
+        link.classList.add('active');
+        link.addEventListener('click', e => e.preventDefault()); // Disable click on active
+      } else {
+        link.classList.remove('active');
+      }
+    });
   });
-});
 
+  document.addEventListener('DOMContentLoaded', () => {
+    fetch('sidebar.html')
+      .then(response => response.text())
+      .then(html => {
+        document.getElementById('sidebar-container').innerHTML = html;
+        
+        highlightActiveNav();
+        startVotingCountdown();
+      });
+  });
+
+  function highlightActiveNav() {
+    const navLinks = document.querySelectorAll('#main-nav a');
+    const currentPath = window.location.pathname.split('/').pop().toLowerCase();
+  
+    navLinks.forEach(link => {
+      const linkPath = link.getAttribute('href').split('/').pop().toLowerCase();
+      if (linkPath === currentPath) {
+        link.classList.add('active');
+        link.addEventListener('click', e => e.preventDefault());
+      } else {
+        link.classList.remove('active');
+      }
+    });
+  }
