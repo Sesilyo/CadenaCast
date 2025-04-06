@@ -41,28 +41,32 @@
       <h1><strong>Your Vote,<br>Your Voice,<br>For Virtue</strong></h1>
      
     <main>
-        <div id="logIn-form">
+        <div id="pos">
           <h3 id="positions">Positions</h3>
             <form id="form1">
-              <p><strong><span class="position-placeholder" data-position="Position 1" style="margin-right: 160px;">[Position Place Holder 1]</span>&nbsp;&nbsp;&nbsp;<span class="position-placeholder" data-position="Position 2">[Position Place Holder 2]</span></strong></p>
+              <p><strong>
+                <a href="CBA-pres-vote-page.html" id="pres" class="position-link" style="margin-right: 160px;">President</a>
+                <a href="CBB-vp-vote-page.html" id="vpres" class="position-link">Vice President</a>
+              </strong></p>
               <br>
-              <p><strong><span class="position-placeholder" data-position="Position 3" style="margin-right: 160px;">[Position Place Holder 3]</span>&nbsp;&nbsp;&nbsp;<span class="position-placeholder" data-position="Position 4">[Position Place Holder 4]</span></strong></p>               
-            </form>
+              <p><strong>
+                <a href="CBC-sec-vote-page.html" id="secretary" class="position-link" style="margin-right: 160px;">Secretary</a>
+                <a href="CBD-tres-page.html" id="treasurer" class="position-link">Treasurer</a>
+              </strong></p>              
         </div>
     </main>
 
-  <div id="modal" class="modal-overlay hidden">
-    <div id="modal-content">
-      <h2 id="modal-title">Modal Title</h2>
-      <p id="modal-body">Modal content goes here.</p>
-      <div id="modal-actions">
-        <button id="cancel-btn" class="modal-button">Cancel</button>
-        <a href="CBA-vote-page.html">
-        <button id="confirm-btn" class="modal-button">Confirm</button>
-        </a>
-      </div>      
+    <div id="modal" class="modal-overlay hidden">
+      <div id="modal-content">
+        <h2 id="modal-title">Modal Title</h2>
+        <p id="modal-body">Modal content goes here.</p>
+        <div id="modal-actions">
+          <button id="cancel-btn" class="modal-button">Cancel</button>
+          <button id="confirm-btn" class="modal-button">Confirm</button>
+        </div>
+      </div>
     </div>
-  </div>
+    
 
   <script src="../../scripts/CB-vote-page.js"></script>
 </body>
