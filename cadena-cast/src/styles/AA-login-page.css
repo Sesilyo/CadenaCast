@@ -1,15 +1,14 @@
 body {
     margin: 0;
-    overflow-y: hidden;
     display: flex;
     flex-direction: column;
     font-family: Arial, sans-serif;
     gap: 20px;
     height: 100vh;
-    overflow-y: hidden;
 }
 
 .header2 {
+    margin-left: 100px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -24,6 +23,15 @@ header {
     justify-content: flex-start;
     padding: 10px 20px;
     font-family: 'Norwester', sans-serif;
+}
+
+#text-elections {
+    margin-bottom: -3%;
+}
+
+#text-2025 {
+    margin-top: 0%;
+    font-size: 6em;
 }
 
 .logo{
