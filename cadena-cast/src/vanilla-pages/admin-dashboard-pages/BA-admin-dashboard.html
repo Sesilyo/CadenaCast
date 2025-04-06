@@ -6,17 +6,16 @@
   <title>Admin Controls</title>
   <link rel="stylesheet" href="/cadena-cast/src/styles/BA-admin-dashboard.css" />
   <link href="https://fonts.cdnfonts.com/css/norwester" rel="stylesheet">
-
 </head>
 <body>
-  <div class="admin-container">
+  <div id="admin-container">
     <!-- Sidebar -->
-    <div class="sidebar">
+    <div id="sidebar">
       <div>
-        <div class="logo">ELECTIONS<br>2025</div>
-        <div class="countdown">
+        <div id="logo">ELECTIONS<br>2025</div>
+        <div id="countdown">
             <div class="label">Voting opens in:</div>
-            <div class="countdown-timer" id="countdown-timer">
+            <div id="countdown-timer">
               <span id="days">0d </span>
               <span id="hours">0h </span>
               <span id="minutes">0m </span>
@@ -24,31 +23,30 @@
             </div>
           </div>
           
-
-        <nav class="nav">
-          <a href="#" class="nav-item">🔗 Connect Wallet</a>
-          <a href="#" class="nav-item">🗳️ Vote</a>
-          <a href="#" class="nav-item">📊 Results</a>
-          <a href="#" class="nav-item active">⚙️ Admin Controls</a>
+        <nav id="main-nav">
+          <a href="./BB-admin-metamask.html" class="nav-item">🔗 Connect Wallet</a>
+          <a href="./BC-admin-vote.html" class="nav-item">🗳️ Vote</a>
+          <a href="./BD-admin-results.html" class="nav-item">📊 Results</a>
+          <a href="./BA-admin-dashboard.html" class="nav-item active">⚙️ Admin Controls</a>
         </nav>
 
-        <div class="powered">POWERED BY:</div>
+        <div id="powered">POWERED BY:</div>
 
-        <div class="bottom-image-container">
-          <img src="../resources/cadenacast logos/Cadena Cast-1.png" alt="Logo" class="bottom-image" />
+        <div id="bottom-image-container">
+          <img src="../resources/cadenacast logos/Cadena Cast-1.png" alt="Logo" id="bottom-image" />
         </div>
       </div>
     </div>
 
     <!-- Main content -->
-    <div class="main">
+    <div id="main">
       <h1>ADMIN CONTROLS</h1>
 
-      <div class="status-banner">
+      <div id="status-banner">
         STATUS OF ELECTION: NOT STARTED
       </div>
 
-      <div class="controls">
+      <div id="controls">
         <div class="control-card" data-action="startElection">
           <div class="icon">▶️</div>
           <h2>START ELECTION</h2>
@@ -72,12 +70,12 @@
 
   <!-- Modal -->
   <div id="modal" class="modal-overlay hidden">
-    <div class="modal-content">
+    <div id="modal-content">
       <h2 id="modal-title">Modal Title</h2>
       <p id="modal-body">Modal content goes here.</p>
-      <div class="modal-actions">
-        <button class="modal-close" id="cancel-btn">Cancel</button>
-        <button class="modal-confirm" id="confirm-btn">Confirm</button>
+      <div id="modal-actions">
+        <button id="cancel-btn" class="modal-button">Cancel</button>
+        <button id="confirm-btn" class="modal-button">Confirm</button>
       </div>      
     </div>
   </div>

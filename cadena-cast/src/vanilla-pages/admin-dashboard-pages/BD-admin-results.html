@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Controls</title>
+  <link rel="stylesheet" href="/cadena-cast/src/styles/BA-admin-dashboard.css" />
+  <link href="https://fonts.cdnfonts.com/css/norwester" rel="stylesheet">
+</head>
+<body>
+  <div id="admin-container">
+    <!-- Sidebar -->
+    <div id="sidebar">
+      <div>
+        <div id="logo">ELECTIONS<br>2025</div>
+        <div id="countdown">
+            <div class="label">Voting opens in:</div>
+            <div id="countdown-timer">
+              <span id="days">0d </span>
+              <span id="hours">0h </span>
+              <span id="minutes">0m </span>
+              <span id="seconds">0s</span>
+            </div>
+          </div>
+          
+        <nav id="main-nav">
+          <a href="./BB-admin-metamask.html" class="nav-item">🔗 Connect Wallet</a>
+          <a href="./BC-admin-vote.html" class="nav-item">🗳️ Vote</a>
+          <a href="./BD-admin-results.html" class="nav-item">📊 Results</a>
+          <a href="./BA-admin-dashboard.html" class="nav-item active">⚙️ Admin Controls</a>
+        </nav>
+
+        <div id="powered">POWERED BY:</div>
+
+        <div id="bottom-image-container">
+          <img src="../resources/cadenacast logos/Cadena Cast-1.png" alt="Logo" id="bottom-image" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Main content -->
+    <div id="main">
+      <h1>Results</h1>
+      <h3>Reminder</h3>
+      <p>You are logged-in as an admin. If you wish to vote, log out and enter log in as a voter.</p>
+  </div>
+
+  <!-- Modal -->
+  <div id="modal" class="modal-overlay hidden">
+    <div id="modal-content">
+      <h2 id="modal-title">Modal Title</h2>
+      <p id="modal-body">Modal content goes here.</p>
+      <div id="modal-actions">
+        <button id="cancel-btn" class="modal-button">Cancel</button>
+        <button id="confirm-btn" class="modal-button">Confirm</button>
+      </div>      
+    </div>
+  </div>
+
+  <script src="/cadena-cast/src/scripts/BA-admin-dashboard.js"></script>
+</body>
+</html>
