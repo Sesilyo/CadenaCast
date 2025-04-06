@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/AdminControls.css'; // Import the CSS
-import SideNavTab from './SideNavTab.jsx';
+import SideNavTab from './sideNavTab.jsx';
 import Modal from './Modal'; // Import Modal Component
 
 const AdminControlsPage = () => {

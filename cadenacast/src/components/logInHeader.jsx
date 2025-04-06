@@ -4,10 +4,9 @@ function LogInHeader()
 {
     return(
         <>
-            <p>Elections</p>
-            <p>2025</p>
-            <img src={logo} alt='CadenaCast logo'/>
-            <p>Powered by Jomafa</p>
+            <p className='elections'>Elections<br />2025</p>  
+            <img className='img1' src={logo} alt='CadenaCast logo'/>
+            <p className='powered-by'>Powered by: Jomafa Nalang</p>
         </>
     );
 }

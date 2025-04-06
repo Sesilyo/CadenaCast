@@ -1,4 +1,4 @@
-import LogInHeader from "./LogInHeader";
+import LogInHeader from './logInHeader';
 
 function Authentication()
 {

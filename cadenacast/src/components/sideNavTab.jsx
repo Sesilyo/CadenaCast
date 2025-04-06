@@ -1,6 +1,6 @@
 import '../styles/sideNavTab.css';
 import logo from '../resources/cadenacast-whitebg.png';
-import CountdownTimer from './VotingTimer';
+import CountdownTimer from './votingTimer';
 
 const SideNavTab = () => {
   return (
