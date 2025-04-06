@@ -1,5 +1,5 @@
 import './App.css';
-import LogInHeader from '../src/components/LogInHeader.jsx';
+import LogInHeader from '../src/components/logInHeader.jsx';
 import LogInForm from '../src/components/LogInForm.jsx';
 
 function App()
