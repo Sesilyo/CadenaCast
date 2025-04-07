@@ -1,111 +1,82 @@
+const connectWalletBtn = document.getElementById('connect-wallet-btn');
 const modal = document.getElementById('modal');
 const modalTitle = document.getElementById('modal-title');
 const modalBody = document.getElementById('modal-body');
 const confirmBtn = document.getElementById('confirm-btn');
 const cancelBtn = document.getElementById('cancel-btn');
+const protectedLinks = document.querySelectorAll('.protected-link');
+const lockIcons = document.querySelectorAll('.lock-icon');
 
-let currentAction = '';
+// Event listener for the Connect Wallet button
+connectWalletBtn.addEventListener('click', function() {
+  connectWallet();
+});
 
-document.querySelectorAll('.control-card').forEach(card => {
-  card.addEventListener('click', () => {
-    const action = card.dataset.action;
-    openModal(action);
+// Simulate wallet connection
+function connectWallet() {
+  // Simulate successful wallet connection
+  alert('Wallet Connected!');
+
+  // Change button text
+  connectWalletBtn.textContent = 'Wallet Connected';
+
+  // Unlock protected links
+  unlockProtectedLinks();
+}
+
+function unlockProtectedLinks() {
+  // Unlock the links
+  const locks = document.querySelectorAll('.lock-icon');
+  const protectedLinks = document.querySelectorAll('.protected-link');
+
+  // Change lock icon from 🔒 to 🔓
+  locks.forEach(lock => {
+    lock.textContent = '🔓';
   });
-});
 
-function openModal(action) {
-  currentAction = action;
+  // Remove locked class to unlock links
+  protectedLinks.forEach(link => {
+    link.classList.remove('locked');
+  });
 
-  if (action === 'startElection') {
-    modalTitle.textContent = 'START VOTING';
-    modalBody.textContent = 'You are about to start the election process. All eligible voters will be able to cast their votes. Confirm?';
-  } else if (action === 'pauseVoting') {
-    modalTitle.textContent = 'PAUSE VOTING';
-    modalBody.textContent = 'This will temporarily suspend all voting activity. Voters in the middle of voting will be interrupted. Continue?';
-  } else if (action === 'endElection') {
-    modalTitle.textContent = 'END ELECTION';
-    modalBody.textContent = 'This will permanently close voting and prepare the system for results calculation. Confirm?';
-  }
-
-  modal.classList.remove('hidden');
+  // Optionally: Add "connected" indication somewhere, like changing the button text
+  alert("Wallet connected! You can now vote.");
 }
-
-function closeModal() {
-  modal.classList.add('hidden');
-  modalTitle.textContent = '';
-  modalBody.textContent = '';
-}
-
-confirmBtn.addEventListener('click', () => {
-  if (currentAction === 'startElection') {
-    console.log('Starting the election...');
-  } else if (currentAction === 'pauseVoting') {
-    console.log('Pausing the voting...');
-  } else if (currentAction === 'endElection') {
-    console.log('Ending the election...');
-  }
-  closeModal();
-});
-
-cancelBtn.addEventListener('click', closeModal);
 
 function startVotingCountdown() {
-    const targetDate = new Date('May 12, 2025 00:00:00').getTime();
+  const targetDate = new Date('May 12, 2025 00:00:00').getTime();
   
-    const daysSpan = document.getElementById('days');
-    const hoursSpan = document.getElementById('hours');
-    const minutesSpan = document.getElementById('minutes');
-    const secondsSpan = document.getElementById('seconds');
-  
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const distance = targetDate - now;
-  
-      if (distance <= 0) {
-        daysSpan.textContent = '0d ';
-        hoursSpan.textContent = '0h ';
-        minutesSpan.textContent = '0m ';
-        secondsSpan.textContent = '0s';
-        clearInterval(interval);
-        return;
-      }
-  
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-  
-      daysSpan.textContent = `${days}d `;
-      hoursSpan.textContent = `${hours}h `;
-      minutesSpan.textContent = `${minutes}m `;
-      secondsSpan.textContent = `${seconds}s`;
+  const daysSpan = document.getElementById('days');
+  const hoursSpan = document.getElementById('hours');
+  const minutesSpan = document.getElementById('minutes');
+  const secondsSpan = document.getElementById('seconds');
+
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+
+    if (distance <= 0) {
+      daysSpan.textContent = '0d ';
+      hoursSpan.textContent = '0h ';
+      minutesSpan.textContent = '0m ';
+      secondsSpan.textContent = '0s';
+      clearInterval(interval);
+      return;
     }
-  
-    const interval = setInterval(updateCountdown, 1000);
-    updateCountdown();
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    daysSpan.textContent = `${days}d `;
+    hoursSpan.textContent = `${hours}h `;
+    minutesSpan.textContent = `${minutes}m `;
+    secondsSpan.textContent = `${seconds}s`;
   }
-  
-  window.onload = () => {
-    startVotingCountdown();
-  };
 
-document.addEventListener('DOMContentLoaded', () => {
-  const navLinks = document.querySelectorAll('#main-nav a');
-  const currentPath = window.location.pathname.split('/').pop();
-
-  navLinks.forEach(link => {
-    const linkPath = link.getAttribute('href').split('/').pop();
-    if (linkPath === currentPath) {
-      link.classList.add('active');
-    } else {
-      link.classList.remove('active');
-    }
-  });
-});
-
-
-function changeText() {
-  const pElement = document.getElementById('p1'); // get the paragraph
-  pElement.innerHTML = 'Wallet connected successfully! You can now cast your vote.';
+  updateCountdown();
+  const interval = setInterval(updateCountdown, 1000);
 }
 
+startVotingCountdown();

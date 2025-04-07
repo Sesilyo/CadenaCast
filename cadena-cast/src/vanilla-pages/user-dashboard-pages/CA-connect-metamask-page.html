@@ -13,20 +13,24 @@
       <div>
         <div id="logo">ELECTIONS<br>2025</div>
         <div id="countdown">
-            <div class="label">Voting opens in:</div>
-            <div id="countdown-timer">
-              <span id="days">0d </span>
-              <span id="hours">0h </span>
-              <span id="minutes">0m </span>
-              <span id="seconds">0s</span>
-            </div>
+          <div class="label">Voting opens in:</div>
+          <div id="countdown-timer">
+            <span id="days">0d </span>
+            <span id="hours">0h </span>
+            <span id="minutes">0m </span>
+            <span id="seconds">0s</span>
           </div>
-          
+        </div>
+
         <nav id="main-nav">
-            <a href="./CA-connect-metamask-page.html" class="nav-item">🔗 Connect Wallet</a>
-            <a href="./CB-vote-page.html" class="nav-item">🗳️ Vote</a>
-            <a href="./CC-result-page.html" class="nav-item">📊 Results</a>
-            <a href="./CD-logout.html" class="nav-item">⚙️ Log-Out</a>
+          <a href="./CA-connect-metamask-page.html" class="nav-item active">🔗 Connect Wallet</a>
+          <a href="./CB-vote-page.html" class="nav-item protected-link locked">
+            🗳️ Vote <span class="lock-icon">🔒</span>
+          </a>
+          <a href="./CC-result-page.html" class="nav-item protected-link locked">
+            📊 Results <span class="lock-icon">🔒</span>
+          </a>
+          <a href="./CD-logout.html" class="nav-item">⚙️ Log-Out</a>
         </nav>
 
         <div id="powered">POWERED BY:</div>
@@ -39,31 +43,29 @@
 
     <div id="main">
       <h1><strong>Connect Wallet<br>To Cast A Vote</strong></h1>
-
-     
-    <main>
+      <main>
         <div id="logIn-form">
-            <form id="form1">
-                <p id="p1">In order to vote, connect your Metamask amount (or other cryptocurrency<br> Wallets). Please don't forget to disconnect after you have voted.
-                </p>
-                    <button type="button" onclick="changeText()">Connect Wallet</button>
-            </form>
+          <form id="form1">
+            <p id="p1">In order to vote, connect your MetaMask (or other cryptocurrency<br> wallets). Please don't forget to disconnect after you have voted.</p>
+            <button type="button" id="connect-wallet-btn">Connect Wallet</button>
+          </form>
         </div>
-    </main>
+      </main>
+    </div>
+  </div>
 
-
+  <!-- Modal -->
   <div id="modal" class="modal-overlay hidden">
     <div id="modal-content">
-      <h2 id="modal-title">Modal Title</h2>
-      <p id="modal-body">Modal content goes here.</p>
+      <h2 id="modal-title"></h2>
+      <p id="modal-body"></p>
       <div id="modal-actions">
-        <button id="cancel-btn" class="modal-button">Cancel</button>
         <button id="confirm-btn" class="modal-button">Confirm</button>
-      </div>      
+        <button id="cancel-btn" class="modal-button">Cancel</button>
+      </div>
     </div>
   </div>
 
   <script src="../../scripts/CA-connect-metamask.js"></script>
 </body>
 </html>
-
