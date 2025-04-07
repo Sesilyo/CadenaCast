@@ -7,39 +7,37 @@ const cancelBtn = document.getElementById('cancel-btn');
 const protectedLinks = document.querySelectorAll('.protected-link');
 const lockIcons = document.querySelectorAll('.lock-icon');
 
-// Event listener for the Connect Wallet button
+
 connectWalletBtn.addEventListener('click', function() {
   connectWallet();
 });
 
-// Simulate wallet connection
+
 function connectWallet() {
-  // Simulate successful wallet connection
+
   alert('Wallet Connected!');
 
-  // Change button text
   connectWalletBtn.textContent = 'Wallet Connected';
 
-  // Unlock protected links
   unlockProtectedLinks();
 }
 
 function unlockProtectedLinks() {
-  // Unlock the links
+
   const locks = document.querySelectorAll('.lock-icon');
   const protectedLinks = document.querySelectorAll('.protected-link');
 
-  // Change lock icon from 🔒 to 🔓
+
   locks.forEach(lock => {
     lock.textContent = '🔓';
   });
 
-  // Remove locked class to unlock links
+
   protectedLinks.forEach(link => {
     link.classList.remove('locked');
   });
 
-  // Optionally: Add "connected" indication somewhere, like changing the button text
+
   alert("Wallet connected! You can now vote.");
 }
 
