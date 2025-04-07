@@ -37,3 +37,10 @@ function startVotingCountdown() {
   
   startVotingCountdown();
   
+document.getElementById("button-logout").addEventListener("click", function (e) {
+  e.preventDefault();
+
+    // DO NOT touch localStorage — keep walletConnected as-is
+    // Just go to the Connect Wallet page
+  window.location.href = "./CA-connect-metamask-page.html";
+});

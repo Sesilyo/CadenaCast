@@ -1,49 +1,84 @@
 const connectWalletBtn = document.getElementById('connect-wallet-btn');
+const protectedLinks = document.querySelectorAll('.protected-link');
+const lockIcons = document.querySelectorAll('.lock-icon');
 const modal = document.getElementById('modal');
 const modalTitle = document.getElementById('modal-title');
 const modalBody = document.getElementById('modal-body');
 const confirmBtn = document.getElementById('confirm-btn');
 const cancelBtn = document.getElementById('cancel-btn');
-const protectedLinks = document.querySelectorAll('.protected-link');
-const lockIcons = document.querySelectorAll('.lock-icon');
 
+// === Run on page load to restore wallet state ===
+window.addEventListener("DOMContentLoaded", () => {
+  const walletState = localStorage.getItem("walletConnected");
 
-connectWalletBtn.addEventListener('click', function() {
-  connectWallet();
+  if (walletState === "true") {
+    connectWalletBtn.textContent = "Disconnect Wallet";
+    unlockProtectedLinks();
+  } else {
+    localStorage.setItem("walletConnected", "false"); // Set default
+    connectWalletBtn.textContent = "Connect Wallet";
+    lockProtectedLinks();
+  }
 });
 
+// === Connect/Disconnect Button Handler ===
+connectWalletBtn.addEventListener('click', () => {
+  const isConnected = localStorage.getItem("walletConnected") === "true";
 
+  if (isConnected) {
+    showDisconnectModal();
+  } else {
+    connectWallet();
+  }
+});
+
+// === Confirm & Cancel Disconnect ===
+confirmBtn.addEventListener('click', () => {
+  disconnectWallet();
+  closeModal();
+});
+
+cancelBtn.addEventListener('click', closeModal);
+
+// === Core Wallet Functions ===
 function connectWallet() {
-
-  alert('Wallet Connected!');
-
-  connectWalletBtn.textContent = 'Wallet Connected';
-
+  alert("Wallet Connected!");
+  connectWalletBtn.textContent = "Disconnect Wallet";
+  localStorage.setItem("walletConnected", "true");
   unlockProtectedLinks();
 }
 
-function unlockProtectedLinks() {
-
-  const locks = document.querySelectorAll('.lock-icon');
-  const protectedLinks = document.querySelectorAll('.protected-link');
-
-
-  locks.forEach(lock => {
-    lock.textContent = '🔓';
-  });
-
-
-  protectedLinks.forEach(link => {
-    link.classList.remove('locked');
-  });
-
-
-  alert("Wallet connected! You can now vote.");
+function disconnectWallet() {
+  alert("Wallet Disconnected.");
+  connectWalletBtn.textContent = "Connect Wallet";
+  localStorage.setItem("walletConnected", "false");
+  lockProtectedLinks();
 }
 
+function unlockProtectedLinks() {
+  lockIcons.forEach(lock => lock.textContent = '🔓');
+  protectedLinks.forEach(link => link.classList.remove('locked'));
+}
+
+function lockProtectedLinks() {
+  lockIcons.forEach(lock => lock.textContent = '🔒');
+  protectedLinks.forEach(link => link.classList.add('locked'));
+}
+
+function showDisconnectModal() {
+  modal.classList.remove('hidden');
+  modalTitle.textContent = "Disconnect Wallet";
+  modalBody.textContent = "Are you sure you want to disconnect your wallet?";
+}
+
+function closeModal() {
+  modal.classList.add('hidden');
+}
+
+// === Voting Countdown ===
 function startVotingCountdown() {
   const targetDate = new Date('May 12, 2025 00:00:00').getTime();
-  
+
   const daysSpan = document.getElementById('days');
   const hoursSpan = document.getElementById('hours');
   const minutesSpan = document.getElementById('minutes');
