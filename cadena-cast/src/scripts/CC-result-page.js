@@ -1,5 +1,3 @@
-// Filename: ../../scripts/CC-result-page.js
-// Desc: Displays election results using Chart.js and data from Firestore.
 
 document.addEventListener('DOMContentLoaded', async () => { // Make async for Firestore fetch
 
@@ -38,15 +36,11 @@ document.addEventListener('DOMContentLoaded', async () => { // Make async for Fi
       return;
   }
 
-  // --- Map Button Text to Firestore positionId ---
   const positionMap = {
-       // Remove or handle 'Positions' button specifically if it exists and is clickable
-       // 'Positions': 'overview',
        'Position 1': 'president',
        'Position 2': 'vice-president',
        'Position 3': 'secretary',
        'Position 4': 'treasurer'
-       // Add more mappings matching your button text and Firestore data
   };
   // Determine the default position to show (e.g., president)
   const defaultPositionId = 'president';
@@ -233,4 +227,4 @@ document.addEventListener('DOMContentLoaded', async () => { // Make async for Fi
 
   // Timer and nav handled by shared-dashboard.js
 
-}); // End DOMContentLoaded
+});

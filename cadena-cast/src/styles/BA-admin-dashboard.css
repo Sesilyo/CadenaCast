@@ -210,3 +210,74 @@ body {
 .hidden {
   display: none;
 }
+
+#status-banner {
+  background-color: #e2e2e2; /* Default grey */
+  color: #333; /* Default dark text */
+  padding: 15px 25px; /* Adjusted padding */
+  border-radius: 50px; /* Pill shape */
+  width: auto; /* Auto width */
+  max-width: 400px; /* Max width */
+  margin: 0 auto 40px auto;
+  font-weight: bold;
+  text-align: center; /* Center text */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions */
+  border: 2px solid transparent; /* Add border for consistency */
+  display: inline-block; /* Allow centering via margin auto */
+  min-width: 250px; /* Ensure it's not too small */
+}
+
+/* Styling for different status classes */
+#status-banner.status-not-started {
+  background-color: #6c757d; /* Grey */
+  color: white;
+  border-color: #5a6268;
+}
+
+#status-banner.status-ongoing {
+  background-color: #28a745; /* Green */
+  color: white;
+  border-color: #218838;
+}
+
+#status-banner.status-paused {
+  background-color: #ffc107; /* Yellow/Orange */
+  color: #333; /* Dark text for contrast */
+  border-color: #e0a800;
+}
+
+#status-banner.status-ended {
+  background-color: #dc3545; /* Red */
+  color: white;
+  border-color: #c82333;
+}
+
+#status-banner.status-unknown {
+  background-color: #e2e2e2; /* Default grey */
+  color: #555;
+  font-style: italic;
+  border-color: #ccc;
+}
+
+#status-banner.status-loading,
+#status-banner.status-updating {
+  background-color: #17a2b8; /* Info Blue */
+  color: white;
+  border-color: #138496;
+  font-style: italic;
+  /* Optional: Add a subtle animation */
+  /* animation: pulse 1.5s infinite ease-in-out; */
+}
+
+#status-banner.status-error {
+    background-color: #dc3545; /* Red */
+    color: white;
+    border-color: #c82333;
+    font-weight: bold;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.7; }
+  100% { opacity: 1; }
+} */

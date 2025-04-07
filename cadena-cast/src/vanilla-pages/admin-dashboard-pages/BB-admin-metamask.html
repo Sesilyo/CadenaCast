@@ -3,36 +3,38 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin Controls</title>
-  <link rel="stylesheet" href="/cadena-cast/src/styles/BA-admin-dashboard.css" />
+  <title>Admin - Connect Wallet</title> <!-- Updated Title -->
+  <!-- Ensure CSS path is correct -->
+  <link rel="stylesheet" href="../../styles/BA-admin-dashboard.css" /> <!-- Assuming shared CSS -->
   <link href="https://fonts.cdnfonts.com/css/norwester" rel="stylesheet">
 </head>
 <body>
-  <div id="admin-container">
+  <div id="admin-container"> <!-- Renamed from user-dashboard-container -->
     <!-- Sidebar -->
     <div id="sidebar">
       <div>
         <div id="logo">ELECTIONS<br>2025</div>
         <div id="countdown">
-            <div class="label">Voting opens in:</div>
+            <div class="label">Voting Timer:</div>
             <div id="countdown-timer">
-              <span id="days">0d </span>
-              <span id="hours">0h </span>
-              <span id="minutes">0m </span>
-              <span id="seconds">0s</span>
+              <span id="days">--d </span>
+              <span id="hours">--h </span>
+              <span id="minutes">--m </span>
+              <span id="seconds">--s</span>
             </div>
           </div>
-          
+
         <nav id="main-nav">
-          <a href="./BB-admin-metamask.html" class="nav-item">🔗 Connect Wallet</a>
-          <a href="./BC-admin-vote.html" class="nav-item">🗳️ Vote</a>
-          <a href="./BD-admin-results.html" class="nav-item">📊 Results</a>
-          <a href="./BA-admin-dashboard.html" class="nav-item">⚙️ Admin Controls</a>
+          <a href="./BB-admin-metamask.html" class="nav-item active" id="nav-connect-admin">🔗 Connect Wallet</a> <!-- Active -->
+          <a href="./BC-admin-vote.html" class="nav-item" id="nav-vote-admin">🗳️ Vote Page (View)</a>
+          <a href="./BD-admin-results.html" class="nav-item" id="nav-results-admin">📊 Results</a>
+          <a href="./BA-admin-dashboard.html" class="nav-item" id="nav-controls-admin">⚙️ Admin Controls</a>
         </nav>
 
         <div id="powered">POWERED BY:</div>
 
         <div id="bottom-image-container">
+           <!-- Ensure image path is correct -->
           <img src="../../resources/cadenacast logos/Cadena Cast-1.png" alt="Logo" id="bottom-image" />
         </div>
       </div>
@@ -40,23 +42,39 @@
 
     <!-- Main content -->
     <div id="main">
-      <h1>Connect Metamask</h1>
+      <h1>Connect Metamask (Admin)</h1>
       <h3>Reminder</h3>
-      <p>You are logged-in as an admin. If you wish to vote, log out and enter log in as a voter.</p>
+      <p>You are logged-in as an admin. Use this page to connect the wallet associated with admin privileges if needed for specific actions (e.g., smart contract interactions - not currently implemented).</p>
+      <p>If you wish to vote as a regular user, please log out first via the Admin Controls page and log back in as a voter.</p>
+      <!-- Add connection button/status display if needed -->
+      <!-- <button id="connect-admin-wallet-btn">Connect Admin Wallet</button> -->
+      <!-- <p>Status: <span id="admin-wallet-status">Not Connected</span></p> -->
   </div>
 
-  <!-- Modal -->
+  <!-- Modal (Include for consistency, even if not used by this specific page's minimal JS) -->
   <div id="modal" class="modal-overlay hidden">
     <div id="modal-content">
       <h2 id="modal-title">Modal Title</h2>
-      <p id="modal-body">Modal content goes here.</p>
+      <p id="modal-body">Modal content.</p>
       <div id="modal-actions">
         <button id="cancel-btn" class="modal-button">Cancel</button>
         <button id="confirm-btn" class="modal-button">Confirm</button>
-      </div>      
+      </div>
     </div>
   </div>
 
-  <script src="/cadena-cast/src/scripts/BA-admin-dashboard.js"></script>
+  <!-- === SCRIPTS (Order is CRITICAL) === -->
+  <!-- 1. Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+  <!-- 2. Shared Dashboard Script (Needed for timer, nav highlighting, potentially wallet status) -->
+   <!-- Ensure path is correct relative to this HTML file -->
+  <script src="../../scripts/shared-dashboard.js"></script>
+
+  <!-- 3. Page Specific Script (Optional - Add if needed for admin wallet connection logic) -->
+  <!-- <script src="../../scripts/BB-admin-metamask.js"></script> -->
+  <!-- ================================== -->
+
 </body>
 </html>

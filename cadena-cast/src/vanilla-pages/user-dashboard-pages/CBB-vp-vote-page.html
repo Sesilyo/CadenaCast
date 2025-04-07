@@ -4,53 +4,41 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cadena Cast - Vote Vice President</title>
-  <!-- Layout CSS -->
   <link rel="stylesheet" href="../../styles/dashboard-layout.css" />
-  <!-- Page Specific CSS -->
-  <!-- *** CORRECTED CSS LINK: Assuming you want CBB styles OR reuse CBA *** -->
   <link rel="stylesheet" href="../../styles/CBB-vp-vote-page.css" />
-  <!-- OR If reusing President styles: -->
-  <!-- <link rel="stylesheet" href="../../styles/CBA-pres-vote-page.css" /> -->
-  <!-- Fonts -->
   <link href="https://fonts.cdnfonts.com/css/norwester" rel="stylesheet">
-  <!-- Scripts -->
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
   <script src="../../scripts/shared-dashboard.js"></script>
 </head>
 <body>
   <div id="user-dashboard-container">
-      <!-- Sidebar -->
       <div id="sidebar">
-          <!-- (Paste Same Sidebar HTML) -->
           <div><div id="logo">ELECTIONS<br>2025</div><div id="countdown"><div class="label">Voting opens in:</div><div id="countdown-timer"><span id="days">0d </span><span id="hours">0h </span><span id="minutes">0m </span><span id="seconds">0s</span></div></div><nav id="main-nav"><a href="./CA-connect-metamask-page.html" class="nav-item">🔗 Connect Wallet</a><a href="./CB-vote-page.html" class="nav-item">🗳️ Vote</a><a href="./CC-result-page.html" class="nav-item">📊 Results</a><a href="./CD-logout.html" class="nav-item">⚙️ Log-Out</a></nav><div id="powered">POWERED BY:</div><div id="bottom-image-container"><img src="../../resources/cadenacast logos/Cadena Cast-1.png" alt="Logo" id="bottom-image" /></div></div>
-      </div> <!-- End Sidebar -->
+      </div>
 
-      <!-- Main Content -->
       <div id="main">
           <h1><strong>Vote for<br>Vice President</strong></h1>
           <main>
-              <!-- *** CONTAINER ID Corrected for VP *** -->
               <div id="vice-president-candidates">
-                  <!-- Example Static Candidates -->
-                  <div class="candidate-card"> <!-- Use generic class -->
+                  <div class="candidate-card"> 
                       <img src="https://static.vecteezy.com/system/resources/thumbnails/008/695/917/small_2x/no-image-available-icon-simple-two-colors-template-for-no-image-or-picture-coming-soon-and-placeholder-illustration-isolated-on-white-background-vector.jpg" width="250px" alt="VP Candidate A Photo">
                       <h2>⚫#5 Vice-President Candidate A | Fallarme, John N. 5</h2>
                       <button type="button" data-position-id="vice-president" data-candidate-id="vp_cand_a" data-candidate-name="VP Candidate A">Vote</button>
                   </div>
-                  <div class="candidate-card"> <!-- Use generic class -->
+                  <div class="candidate-card"> 
                       <img src="https://static.vecteezy.com/system/resources/thumbnails/008/695/917/small_2x/no-image-available-icon-simple-two-colors-template-for-no-image-or-picture-coming-soon-and-placeholder-illustration-isolated-on-white-background-vector.jpg" width="250px" alt="VP Candidate B Photo">
                       <h2>⚫#6 Vice-President Candidate B | Fallarme, John N. 6</h2>
                       <button type="button" data-position-id="vice-president" data-candidate-id="vp_cand_b" data-candidate-name="VP Candidate B">Vote</button>
                   </div>
-                  <div class="candidate-card"> <!-- Use generic class -->
+                  <div class="candidate-card"> 
                       <img src="https://static.vecteezy.com/system/resources/thumbnails/008/695/917/small_2x/no-image-available-icon-simple-two-colors-template-for-no-image-or-picture-coming-soon-and-placeholder-illustration-isolated-on-white-background-vector.jpg" width="250px" alt="VP Candidate C Photo">
                       <h2>⚫#7 Vice-President Candidate C | Fallarme, John N. 7</h2>
                       <button type="button" data-position-id="vice-president" data-candidate-id="vp_cand_c" data-candidate-name="VP Candidate C">Vote</button>
                   </div>
               </div>
           </main>
-          <!-- Modal HTML Structure -->
+          
           <div id="modal" class="modal-overlay hidden">
             <div id="modal-content">
               <h2 id="modal-title">Modal Title</h2>
@@ -61,10 +49,10 @@
               </div>
             </div>
           </div>
-      </div> <!-- End Main -->
-  </div> <!-- End user-dashboard-container -->
+      </div> 
+  </div> 
 
-  <!-- Page Specific Script -->
+  
   <script src="../../scripts/CBB-vp-vote-page.js"></script>
 </body>
 </html>

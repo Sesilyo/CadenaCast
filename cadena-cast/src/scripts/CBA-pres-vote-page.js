@@ -1,22 +1,15 @@
-// Filename: ../../scripts/CBA-pres-vote-page.js
-// Desc: Handles voting for President with modal confirmation, success modal, locking, and visibility check warning.
-
 document.addEventListener('DOMContentLoaded', () => {
-    // --- !!! CONFIGURATION FOR THIS POSITION !!! ---
     const expectedPositionId = 'president';
     const positionDisplayName = 'President';
-    const containerElementId = 'president-candidates'; // MUST MATCH ID in CBA-pres-vote-page.html
-    // ----------------------------------------------
+    const containerElementId = 'president-candidates'; 
 
     console.log(`[${positionDisplayName}] Loading vote page.`);
 
-    // --- State Variables ---
     let voteButtons = [];
-    let hasVotedThisSession = false; // Tracks if vote completed *in this specific page load*
+    let hasVotedThisSession = false;
     let visibilityChangeListenerAttached = false;
-    let tingSound = null; // For the warning sound
+    let tingSound = null; 
 
-    // --- Access Control & Setup Checks ---
     if (typeof isWalletConnected !== 'function' || typeof redirectToWalletPage !== 'function' || typeof firestoreDB === 'undefined' || !firestoreDB) {
         console.error(`[${positionDisplayName}] Critical dependency missing (shared script / DB).`);
         alert("Page loading error.");
@@ -34,9 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     console.log(`[${positionDisplayName}] User NID for voting: ${loggedInUserNID}`);
 
-    // --- UI Elements ---
     const candidatesContainer = document.getElementById(containerElementId);
-    const mainElement = document.getElementById('main'); // Assumed to exist
+    const mainElement = document.getElementById('main'); 
     const modal = document.getElementById('modal');
     const modalTitle = document.getElementById('modal-title');
     const modalBody = document.getElementById('modal-body');

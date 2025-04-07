@@ -5,27 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cadena Cast - Results</title>
 
-  <!-- Layout CSS -->
   <link rel="stylesheet" href="../../styles/dashboard-layout.css" />
-  <!-- Page Specific CSS -->
   <link rel="stylesheet" href="../../styles/CC-result-page.css" />
-  <!-- Fonts -->
   <link href="https://fonts.cdnfonts.com/css/norwester" rel="stylesheet">
-
-  <!-- 1. Firebase SDKs FIRST -->
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-
-  <!-- 2. Chart.js Library -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-  <!-- 3. Shared Dashboard Script THIRD -->
   <script src="../../scripts/shared-dashboard.js"></script>
 
 </head>
 <body>
   <div id="user-dashboard-container">
-    <!-- Sidebar -->
     <div id="sidebar">
       <div>
         <div id="logo">ELECTIONS<br>2025</div>
@@ -49,37 +39,28 @@
           <img src="../../resources/cadenacast logos/Cadena Cast-1.png" alt="Logo" id="bottom-image" />
         </div>
       </div>
-    </div> <!-- End Sidebar -->
+    </div> 
 
-    <!-- Main Content -->
-    <div id="main-content"> <!-- ID used by original CSS -->
+    <div id="main-content"> 
       <div class="heading-container">
         <h1 class="heading">Current<br><span>Standings</span></h1>
       </div>
 
       <div class="standings-container">
-        <!-- Ensure button text matches keys in positionMap in JS -->
         <div class="position-controls">
-          <!-- Removed generic 'Positions' button, assuming direct position view -->
-          <button class="position-btn active">Position 1</button> <!-- President -->
-          <button class="position-btn">Position 2</button> <!-- VP -->
-          <button class="position-btn">Position 3</button> <!-- Secretary -->
-          <button class="position-btn">Position 4</button> <!-- Treasurer -->
+          <button class="position-btn active">Position 1</button> 
+          <button class="position-btn">Position 2</button> 
+          <button class="position-btn">Position 3</button> 
+          <button class="position-btn">Position 4</button> 
         </div>
 
         <div class="chart-container">
           <canvas id="barChart"></canvas>
-<<<<<<< HEAD
-          <!-- Message area will be added by JS if needed -->
         </div>
-=======
-        </div>  
->>>>>>> 15097ac9795b8410c4bb24c7145becdf21cd7e3b
       </div>
-    </div> <!-- End Main Content -->
-  </div> <!-- End user-dashboard-container -->
+    </div>
+  </div> 
 
-  <!-- 4. Page Specific Script LAST -->
   <script src="../../scripts/CC-result-page.js"></script>
 </body>
 </html>

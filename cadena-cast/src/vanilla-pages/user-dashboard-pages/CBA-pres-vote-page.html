@@ -5,14 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cadena Cast - Vote President</title>
 
-  <!-- Layout CSS -->
   <link rel="stylesheet" href="../../styles/dashboard-layout.css" />
-  <!-- Page Specific CSS -->
   <link rel="stylesheet" href="../../styles/CBA-pres-vote-page.css" />
-  <!-- Fonts -->
   <link href="https://fonts.cdnfonts.com/css/norwester" rel="stylesheet">
-
-  <!-- Scripts -->
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
   <script src="../../scripts/shared-dashboard.js"></script>
@@ -20,7 +15,6 @@
 </head>
 <body>
   <div id="user-dashboard-container">
-      <!-- Sidebar -->
       <div id="sidebar">
            <div>
               <div id="logo">ELECTIONS<br>2025</div>
@@ -41,16 +35,13 @@
                   <img src="../../resources/cadenacast logos/Cadena Cast-1.png" alt="Logo" id="bottom-image" />
               </div>
           </div>
-      </div> <!-- End Sidebar -->
+      </div> 
 
-      <!-- Main Content -->
+
       <div id="main">
           <h1><strong>Vote for<br>President</strong></h1>
           <main>
-              <!-- Container for PRESIDENT candidates -->
               <div id="president-candidates">
-                  <!-- Example Static Structure -->
-                  <!-- *** USING GENERIC CLASS "candidate-card" *** -->
                   <div class="candidate-card">
                       <img src="https://static.vecteezy.com/system/resources/thumbnails/008/695/917/small_2x/no-image-available-icon-simple-two-colors-template-for-no-image-or-picture-coming-soon-and-placeholder-illustration-isolated-on-white-background-vector.jpg" width="250px" alt="President Candidate A Photo">
                       <h2>⚫#1 President Candidate A | Fallarme, John N. 1</h2>
@@ -73,7 +64,7 @@
                   </div>
               </div>
           </main>
-          <!-- Modal HTML Structure -->
+          
           <div id="modal" class="modal-overlay hidden">
             <div id="modal-content">
               <h2 id="modal-title">Modal Title</h2>
@@ -84,10 +75,10 @@
               </div>
             </div>
           </div>
-      </div> <!-- End Main -->
-  </div> <!-- End user-dashboard-container -->
+      </div> 
+  </div> 
 
-  <!-- Page Specific Script -->
+  
   <script src="../../scripts/CBA-pres-vote-page.js"></script>
 </body>
 </html>
