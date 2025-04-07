@@ -116,6 +116,15 @@ body {
   font-weight: bold;
 }
 
+#admin-display-container {
+  background-color: #e2e2e2;
+  padding: 15px 20px;
+  border-radius: 25px;
+  width: 790px;
+  margin: 0 auto 40px auto;
+  font-weight: bold;
+}
+
 #controls {
   display: flex;
   flex-wrap: wrap;

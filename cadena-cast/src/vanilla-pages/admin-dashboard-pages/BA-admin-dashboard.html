@@ -46,6 +46,14 @@
         STATUS OF ELECTION: NOT STARTED
       </div>
 
+      <div id="admin-display-container">
+        <div id="admin-display-text">
+          <p>Logged in as:</p> <p id="admin-ID-display"></p>
+        </div>
+      </div>
+
+      <br><br>
+
       <div id="controls">
         <div class="control-card" data-action="startElection">
           <div class="icon">▶️</div>
@@ -64,6 +72,13 @@
           <h2>END ELECTION</h2>
           <p>Close voting permanently and prepare for results calculation.</p>
         </div>
+
+        <div class="control-card" data-action="">
+          <div class="icon">➡️</div>
+          <h2>LOG OUT</h2>
+          <p>Log out as admin.</p>
+        </div>
+
       </div>
     </div>
   </div>
@@ -71,8 +86,8 @@
   <!-- Modal -->
   <div id="modal" class="modal-overlay hidden">
     <div id="modal-content">
-      <h2 id="modal-title">Modal Title</h2>
-      <p id="modal-body">Modal content goes here.</p>
+      <h2 id="modal-title">Log Out</h2>
+      <p id="modal-body">You are about to log out from the CadenaCast admin's dashboard. Confirm?</p>
       <div id="modal-actions">
         <button id="cancel-btn" class="modal-button">Cancel</button>
         <button id="confirm-btn" class="modal-button">Confirm</button>
