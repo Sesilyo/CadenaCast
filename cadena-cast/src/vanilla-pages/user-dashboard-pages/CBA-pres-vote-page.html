@@ -3,64 +3,91 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cadena Cast</title>
+  <title>Cadena Cast - Vote President</title>
+
+  <!-- Layout CSS -->
+  <link rel="stylesheet" href="../../styles/dashboard-layout.css" />
+  <!-- Page Specific CSS -->
   <link rel="stylesheet" href="../../styles/CBA-pres-vote-page.css" />
+  <!-- Fonts -->
   <link href="https://fonts.cdnfonts.com/css/norwester" rel="stylesheet">
+
+  <!-- Scripts -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  <script src="../../scripts/shared-dashboard.js"></script>
+
 </head>
 <body>
- 
-    <div id="main">
-      <h1><strong>Your Vote,<br>Your Voice,<br>For Virtue</strong></h1>
-     
-    <main>
-        <div id="president-candidates">
-          <h3 id="positions">Positions</h3>
-            <form id="form1">
-              <div class="pres-candidate-cards">
-                <div>
-                  <img src="https://static.vecteezy.com/system/resources/thumbnails/008/695/917/small_2x/no-image-available-icon-simple-two-colors-template-for-no-image-or-picture-coming-soon-and-placeholder-illustration-isolated-on-white-background-vector.jpg"
-                       width="250px">
-                  <h2>⚫#1 President Candidate A | Last Name, First Name MI. (suffix)</h2>
-                  <button>
-                    <a href="../user-dashboard-pages/CB-vote-page.html">Vote</a>
-                  </button>
-                </div>
+  <div id="user-dashboard-container">
+      <!-- Sidebar -->
+      <div id="sidebar">
+           <div>
+              <div id="logo">ELECTIONS<br>2025</div>
+              <div id="countdown">
+                  <div class="label">Voting opens in:</div>
+                  <div id="countdown-timer">
+                      <span id="days">0d </span><span id="hours">0h </span><span id="minutes">0m </span><span id="seconds">0s</span>
+                  </div>
               </div>
-
-              <div class="pres-candidate-cards">
-                <img src="https://static.vecteezy.com/system/resources/thumbnails/008/695/917/small_2x/no-image-available-icon-simple-two-colors-template-for-no-image-or-picture-coming-soon-and-placeholder-illustration-isolated-on-white-background-vector.jpg"
-                       width="250px">
-                  <h2>⚫#2 President Candidate B | Last Name, First Name MI. (suffix)</h2>
-                <p>Last Name, First Name MI.</p>
-                <button>
-                  <a href="../user-dashboard-pages/CB-vote-page.html">Vote</a>
-                </button>
+              <nav id="main-nav">
+                   <a href="./CA-connect-metamask-page.html" class="nav-item">🔗 Connect Wallet</a>
+                   <a href="./CB-vote-page.html" class="nav-item">🗳️ Vote</a>
+                   <a href="./CC-result-page.html" class="nav-item">📊 Results</a>
+                   <a href="./CD-logout.html" class="nav-item">⚙️ Log-Out</a>
+              </nav>
+              <div id="powered">POWERED BY:</div>
+              <div id="bottom-image-container">
+                  <img src="../../resources/cadenacast logos/Cadena Cast-1.png" alt="Logo" id="bottom-image" />
               </div>
+          </div>
+      </div> <!-- End Sidebar -->
 
-              <div class="pres-candidate-cards">
-                <img src="https://static.vecteezy.com/system/resources/thumbnails/008/695/917/small_2x/no-image-available-icon-simple-two-colors-template-for-no-image-or-picture-coming-soon-and-placeholder-illustration-isolated-on-white-background-vector.jpg"
-                       width="250px">
-                  <h2>⚫#3 President Candidate C | Last Name, First Name MI. (suffix)</h2>
-                <p>Last Name, First Name MI.</p>
-                <button>
-                  <a href="../user-dashboard-pages/CB-vote-page.html">Vote</a>
-                </button>
+      <!-- Main Content -->
+      <div id="main">
+          <h1><strong>Vote for<br>President</strong></h1>
+          <main>
+              <!-- Container for PRESIDENT candidates -->
+              <div id="president-candidates">
+                  <!-- Example Static Structure -->
+                  <!-- *** USING GENERIC CLASS "candidate-card" *** -->
+                  <div class="candidate-card">
+                      <img src="https://static.vecteezy.com/system/resources/thumbnails/008/695/917/small_2x/no-image-available-icon-simple-two-colors-template-for-no-image-or-picture-coming-soon-and-placeholder-illustration-isolated-on-white-background-vector.jpg" width="250px" alt="President Candidate A Photo">
+                      <h2>⚫#1 President Candidate A | Fallarme, John N. 1</h2>
+                      <button type="button" data-position-id="president" data-candidate-id="pres_cand_a" data-candidate-name="President Candidate A">Vote</button>
+                  </div>
+                  <div class="candidate-card">
+                      <img src="https://static.vecteezy.com/system/resources/thumbnails/008/695/917/small_2x/no-image-available-icon-simple-two-colors-template-for-no-image-or-picture-coming-soon-and-placeholder-illustration-isolated-on-white-background-vector.jpg" width="250px" alt="President Candidate B Photo">
+                      <h2>⚫#2 President Candidate B | Fallarme, John N. 2</h2>
+                      <button type="button" data-position-id="president" data-candidate-id="pres_cand_b" data-candidate-name="President Candidate B">Vote</button>
+                  </div>
+                   <div class="candidate-card">
+                       <img src="https://static.vecteezy.com/system/resources/thumbnails/008/695/917/small_2x/no-image-available-icon-simple-two-colors-template-for-no-image-or-picture-coming-soon-and-placeholder-illustration-isolated-on-white-background-vector.jpg" width="250px" alt="President Candidate C Photo">
+                       <h2>⚫#3 President Candidate C | Fallarme, John N. 3</h2>
+                       <button type="button" data-position-id="president" data-candidate-id="pres_cand_c" data-candidate-name="President Candidate C">Vote</button>
+                  </div>
+                   <div class="candidate-card">
+                       <img src="https://static.vecteezy.com/system/resources/thumbnails/008/695/917/small_2x/no-image-available-icon-simple-two-colors-template-for-no-image-or-picture-coming-soon-and-placeholder-illustration-isolated-on-white-background-vector.jpg" width="250px" alt="President Candidate D Photo">
+                       <h2>⚫#4 President Candidate D | Fallarme, John N. 4</h2>
+                       <button type="button" data-position-id="president" data-candidate-id="pres_cand_d" data-candidate-name="President Candidate D">Vote</button>
+                  </div>
               </div>
-
-              <div class="pres-candidate-cards">
-                <img src="https://static.vecteezy.com/system/resources/thumbnails/008/695/917/small_2x/no-image-available-icon-simple-two-colors-template-for-no-image-or-picture-coming-soon-and-placeholder-illustration-isolated-on-white-background-vector.jpg"
-                       width="250px">
-                  <h2>⚫#4 President Candidate D | Last Name, First Name MI. (suffix)</h2>
-                <p>Last Name, First Name MI.</p>
-                <button>
-                  <a href="../user-dashboard-pages/CB-vote-page.html">Vote</a>
-                </button>
+          </main>
+          <!-- Modal HTML Structure -->
+          <div id="modal" class="modal-overlay hidden">
+            <div id="modal-content">
+              <h2 id="modal-title">Modal Title</h2>
+              <p id="modal-body">Modal content goes here.</p>
+              <div id="modal-actions">
+                <button id="cancel-btn" class="modal-button">Cancel</button>
+                <button id="confirm-btn" class="modal-button">Confirm</button>
               </div>
-            </form>
-        </div>
-    </main>
+            </div>
+          </div>
+      </div> <!-- End Main -->
+  </div> <!-- End user-dashboard-container -->
 
-
-  <script src="../../scripts/CB-vote-page.js"></script>
+  <!-- Page Specific Script -->
+  <script src="../../scripts/CBA-pres-vote-page.js"></script>
 </body>
 </html>

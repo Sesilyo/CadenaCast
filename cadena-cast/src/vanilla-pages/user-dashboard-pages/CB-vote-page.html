@@ -3,73 +3,101 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cadena Cast</title>
+  <title>Cadena Cast - Vote</title>
+
+  <link rel="stylesheet" href="../../styles/dashboard-layout.css" />
   <link rel="stylesheet" href="../../styles/CB-vote-page.css" />
   <link href="https://fonts.cdnfonts.com/css/norwester" rel="stylesheet">
+
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  <script src="../../scripts/shared-dashboard.js"></script>
+
 </head>
 <body>
-  <div id="admin-container">
+  <div id="user-dashboard-container">
     <div id="sidebar">
       <div>
         <div id="logo">ELECTIONS<br>2025</div>
         <div id="countdown">
-            <div class="label">Voting opens in:</div>
-            <div id="countdown-timer">  
-              <span id="days">0d </span>
-              <span id="hours">0h </span>
-              <span id="minutes">0m </span>
-              <span id="seconds">0s</span>
+            <div class="label">Voting status:</div> <!-- Changed label slightly -->
+            <div id="countdown-timer">
+              <span id="days">--d </span>
+              <span id="hours">--h </span>
+              <span id="minutes">--m </span>
+              <span id="seconds">--s</span>
             </div>
           </div>
-          
         <nav id="main-nav">
-            <a href="./CA-connect-metamask-page.html" class="nav-item">🔗 Connect Wallet</a>
-            <a href="./CB-vote-page.html" class="nav-item">🗳️ Vote</a>
-            <a href="./CC-result-page.html" class="nav-item">📊 Results</a>
-            <a href="./CD-logout.html" class="nav-item">⚙️ Log-Out</a>
+            <a href="./CA-connect-metamask-page.html" class="nav-item" id="nav-connect">🔗 Connect Wallet</a>
+            <a href="./CB-vote-page.html" class="nav-item active" id="nav-vote">🗳️ Vote</a> <!-- Mark as active -->
+            <a href="./CC-result-page.html" class="nav-item" id="nav-results">📊 Results</a>
+            <a href="./CD-logout.html" class="nav-item" id="nav-logout">⚙️ Log-Out</a>
         </nav>
-
         <div id="powered">POWERED BY:</div>
-
         <div id="bottom-image-container">
-          <img src="../../resources/cadenacast logos/Cadena Cast-1.png" alt="Logo" id="bottom-image" />
+          <img src="../../resources/cadenacast logos/Cadena Cast-1.png" alt="Cadena Cast Logo" id="bottom-image" />
         </div>
       </div>
     </div>
 
     <div id="main">
-      <h1><strong>Your Vote,<br>Your Voice,<br>For Virtue</strong></h1>
-     
-    <main>
-        <div id="pos">
-          <h3 id="positions">Positions</h3>
-            <form id="form1">
-              <p><strong>
-                <a href="CBA-pres-vote-page.html" id="pres" class="position-link" style="margin-right: 160px;">President</a>
-                <a href="CBB-vp-vote-page.html" id="vpres" class="position-link">Vice President</a>
-              </strong></p>
-              <br>
-              <p><strong>
-                <a href="CBC-sec-vote-page.html" id="secretary" class="position-link" style="margin-right: 160px;">Secretary</a>
-                <a href="CBD-tres-page.html" id="treasurer" class="position-link">Treasurer</a>
-              </strong></p>              
-        </div>
-    </main>
+      <h1 style="font-family: 'Norwester', sans-serif;"><strong>Your Vote,<br>Your Voice,<br>For Virtue</strong></h1>
+      <main>
+        <h3 id="positions">Select Position to Vote</h3>
+          <div id="pos" class="positions-container"> 
+                <p class="position-row">
+                  <strong>
+                    <a href="./CBA-pres-vote-page.html"
+                       id="pres"
+                       class="position-link"
+                       data-position-id="president"
+                       data-position-name="President">President</a>
 
-    <div id="modal" class="modal-overlay hidden">
-      <div id="modal-content">
-        <h2 id="modal-title">Modal Title</h2>
-        <p id="modal-body">Modal content goes here.</p>
-        <div id="modal-actions">
-          <button id="cancel-btn" class="modal-button">Cancel</button>
-          <button id="confirm-btn" class="modal-button">Confirm</button>
+                    <a href="./CBB-vp-vote-page.html"
+                       id="vpres"
+                       class="position-link"
+                       data-position-id="vice-president"
+                       data-position-name="Vice President">Vice President</a>
+                  </strong>
+                </p>
+                <p class="position-row"> <!-- Using paragraphs for structure -->
+                  <strong>
+                    <a href="./CBC-sec-vote-page.html"
+                       id="secretary"
+                       class="position-link"
+                       data-position-id="secretary"
+                       data-position-name="Secretary">Secretary</a>
+
+                    <a href="./CBD-tres-page.html"
+                       id="treasurer"
+                       class="position-link"
+                       data-position-id="treasurer"
+                       data-position-name="Treasurer">Treasurer</a>
+                  </strong>
+                </p>
+          </div>
+      </main>
+
+      <!-- Shared Modal Structure (Used by CB-vote-page.js) -->
+      <!-- Ensure this structure is identical or compatible across pages using the modal -->
+      <div id="modal" class="modal-overlay hidden">
+        <div id="modal-content">
+          <h2 id="modal-title">Modal Title</h2> <!-- Title set by JS -->
+          <p id="modal-body">Modal content goes here.</p> <!-- Body set by JS -->
+          <div id="modal-actions">
+            <!-- Buttons might be shown/hidden by JS -->
+            <button id="cancel-btn" class="modal-button cancel">Cancel</button>
+            <button id="confirm-btn" class="modal-button confirm">Confirm</button>
+          </div>
         </div>
       </div>
-    </div>
-    
 
+    </div> <!-- End Main -->
+  </div> <!-- End user-dashboard-container -->
+
+  <!-- Page Specific Script (MUST be AFTER the modal HTML) -->
   <script src="../../scripts/CB-vote-page.js"></script>
+
 </body>
 </html>
-
-

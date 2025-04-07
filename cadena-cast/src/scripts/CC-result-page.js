@@ -1,157 +1,236 @@
-let currentAction = '';
+// Filename: ../../scripts/CC-result-page.js
+// Desc: Displays election results using Chart.js and data from Firestore.
 
-function closeModal() {
-  modal.classList.add('hidden');
-  modalTitle.textContent = '';
-  modalBody.textContent = '';
-}
+document.addEventListener('DOMContentLoaded', async () => { // Make async for Firestore fetch
 
-function startVotingCountdown() {
-    const targetDate = new Date('May 12, 2025 00:00:00').getTime();
-
-    const daysSpan = document.getElementById('days');
-    const hoursSpan = document.getElementById('hours');
-    const minutesSpan = document.getElementById('minutes');
-    const secondsSpan = document.getElementById('seconds');
-
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const distance = targetDate - now;
-
-      if (distance <= 0) {
-        daysSpan.textContent = '0d ';
-        hoursSpan.textContent = '0h ';
-        minutesSpan.textContent = '0m ';
-        secondsSpan.textContent = '0s';
-        clearInterval(interval);
+  // --- Access Control ---
+   if (typeof isWalletConnected !== 'function' || typeof redirectToWalletPage !== 'function') {
+        console.error("Shared functions not loaded!");
+        alert("Page loading error. Please refresh.");
+         document.body.innerHTML = "<p style='color:red; text-align:center;'>Page Error. Cannot load components.</p>";
         return;
-      }
+   }
+  if (!isWalletConnected()) {
+      redirectToWalletPage();
+      return; // Stop execution
+  }
+  console.log("Results page: Wallet connected. Access granted.");
 
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      daysSpan.textContent = `${days}d `;
-      hoursSpan.textContent = `${hours}h `;
-      minutesSpan.textContent = `${minutes}m `;
-      secondsSpan.textContent = `${seconds}s`;
-    }
-
-    const interval = setInterval(updateCountdown, 1000);
-    updateCountdown();
-}
-
-window.onload = () => {
-  startVotingCountdown();
-};
-
-document.addEventListener('DOMContentLoaded', () => {
-  const navLinks = document.querySelectorAll('#main-nav a');
-  const currentPath = window.location.pathname.split('/').pop();
-
-  navLinks.forEach(link => {
-    const linkPath = link.getAttribute('href').split('/').pop();
-    if (linkPath === currentPath) {
-      link.classList.add('active');
-    } else {
-      link.classList.remove('active');
-    }
-  });
-});
-
-const sampleData = {
-    positions: {
-        labels: ['Position 1', 'Position 2', 'Position 3', 'Position 4', 'Position 5'],
-        data: [12, 19, 3, 5, 2]
-    },
-    position1: {
-        labels: ['Candidate A', 'Candidate B', 'Candidate C', 'Candidate D'],
-        data: [20, 12, 30, 40]
-    },
-    position2: {
-        labels: ['Candidate X', 'Candidate Y', 'Candidate Z'],
-        data: [60, 15, 25]
-    },
-    position3: {
-        labels: ['Candidate 1', 'Candidate 2', 'Candidate 3'],
-        data: [10, 25, 35]
-    },
-    position4: {
-        labels: [],
-        data: []
-    }
-};
-
-let chart;
-
-function createChart(labels, data) {
-  const ctx = document.getElementById('barChart').getContext('2d');
-
-  if (chart) {
-    chart.destroy();
+  // --- Firebase Setup ---
+  if (typeof firestoreDB === 'undefined' || !firestoreDB) { // Add check for null/undefined
+       console.error("Firestore DB not initialized!");
+       alert("Database connection error.");
+       return;
   }
 
-  chart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: labels,
-      datasets: [
-        {
-          label: 'Votes',
-          data: data,
-          backgroundColor: '#a69ef7',
-          borderColor: '#6f6be0',
-          borderWidth: 1
-        }
-      ]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      }
-    }
-  });
-}
+  // --- Chart Setup ---
+  const canvas = document.getElementById('barChart');
+  const ctx = canvas?.getContext('2d'); // Get context safely
+  let resultsChart = null;
+  let allCandidatesData = [];
+  const positionButtons = document.querySelectorAll('.position-btn');
+  const chartContainer = document.querySelector('.chart-container');
 
-function updateChart(position) {
-    const data = sampleData[position];
-  
-    const chartContainer = document.querySelector('.chart-container');
-    const canvas = document.getElementById('barChart');
-  
-    if (!data || data.labels.length === 0 || data.data.every(val => val === 0)) {
-      if (chart) chart.destroy();
-      canvas.style.display = 'none';
-  
-      let noResultDiv = document.querySelector('.no-result');
-      if (!noResultDiv) {
-        noResultDiv = document.createElement('div');
-        noResultDiv.classList.add('no-result');
-        noResultDiv.textContent = '🚫 No results available yet for this position.';
-        chartContainer.appendChild(noResultDiv);
+  if (!canvas || !ctx || !chartContainer) {
+      console.error("Chart elements (canvas, container, or context) not found!");
+      const mainContent = document.getElementById('main-content');
+      if (mainContent) mainContent.innerHTML = "<p style='color:red;text-align:center;'>Error displaying results chart components.</p>";
+      return;
+  }
+
+  // --- Map Button Text to Firestore positionId ---
+  const positionMap = {
+       // Remove or handle 'Positions' button specifically if it exists and is clickable
+       // 'Positions': 'overview',
+       'Position 1': 'president',
+       'Position 2': 'vice-president',
+       'Position 3': 'secretary',
+       'Position 4': 'treasurer'
+       // Add more mappings matching your button text and Firestore data
+  };
+  // Determine the default position to show (e.g., president)
+  const defaultPositionId = 'president';
+
+  // --- Fetch All Candidate Data ---
+  async function fetchResults() {
+      console.log("Fetching election results from Firestore...");
+      showLoadingState(true);
+      clearNoResultsMessage();
+      try {
+          const snapshot = await firestoreDB.collection('candidates')
+                                   .orderBy('positionId') // Group by position
+                                   .orderBy('ballotNumber') // Order within position
+                                   .get();
+
+          allCandidatesData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+          console.log("Fetched candidates:", allCandidatesData);
+
+          if (allCandidatesData.length === 0) {
+              displayNoResults("No candidate data found in the database. Setup Firestore 'candidates' collection.");
+              disablePositionButtons(); // Disable buttons if no data
+          } else {
+              setupPositionButtons(); // Setup button listeners
+              updateChartForPosition(defaultPositionId); // Show default position results
+              setActiveButton(defaultPositionId); // Highlight default button
+          }
+
+      } catch (error) {
+          console.error("Error fetching results:", error);
+          displayNoResults(`Failed to load results: ${error.message}`);
+          disablePositionButtons();
+      } finally {
+          showLoadingState(false);
       }
-    } else {
-      const noResultDiv = document.querySelector('.no-result');
-      if (noResultDiv) noResultDiv.remove();
-  
+  }
+
+  // --- Update Chart ---
+  function updateChartForPosition(positionId) {
+      console.log("Updating chart for position:", positionId);
+      const positionCandidates = allCandidatesData.filter(c => c.positionId === positionId);
+
+      if (positionCandidates.length === 0) {
+          // This case might happen if a button exists but no candidates were fetched for it
+          displayNoResults(`No candidates configured for position: ${positionId}`);
+          return;
+      }
+
+      // Sort by vote count descending
+      positionCandidates.sort((a, b) => (b.voteCount || 0) - (a.voteCount || 0));
+
+      const labels = positionCandidates.map(c => `${c.name || c.fullName || c.id} (#${c.ballotNumber})`);
+      const data = positionCandidates.map(c => c.voteCount || 0);
+
+      if (data.every(val => val === 0)) {
+           displayNoResults(`No votes recorded yet for position: ${positionId}`);
+           return;
+      }
+
+      clearNoResultsMessage();
       canvas.style.display = 'block';
-      createChart(data.labels, data.data);
-    }
+
+      const chartData = {
+          labels: labels,
+          datasets: [{
+              label: 'Votes',
+              data: data,
+              backgroundColor: generateColors(data.length),
+              borderColor: generateColors(data.length, true),
+              borderWidth: 1
+          }]
+      };
+
+      const chartOptions = {
+          indexAxis: 'y', // Horizontal bar chart
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+              x: { beginAtZero: true, ticks: { stepSize: 1, precision: 0 }, title: { display: true, text: 'Number of Votes' } },
+              y: { title: { display: false } }
+          },
+          plugins: {
+              legend: { display: false },
+              tooltip: {
+                 callbacks: {
+                     label: function(context) {
+                         return `${context.dataset.label || 'Votes'}: ${context.parsed.x ?? 0}`;
+                     }
+                 }
+              }
+          }
+      };
+
+      if (resultsChart) resultsChart.destroy();
+      resultsChart = new Chart(ctx, { type: 'bar', data: chartData, options: chartOptions });
   }
 
-document.querySelectorAll('.position-btn').forEach(button => {
-  button.addEventListener('click', () => {
-    document.querySelectorAll('.position-btn').forEach(btn => btn.classList.remove('active'));
-    button.classList.add('active');
+  // --- UI Helpers ---
+  function showLoadingState(isLoading) {
+       console.log(isLoading ? "Loading results..." : "Finished loading results.");
+       if (chartContainer) chartContainer.style.opacity = isLoading ? '0.5' : '1';
+  }
 
-    const position = button.textContent.toLowerCase().replace(/\s+/g, '');
-    updateChart(position);
-  });
-});
+  function displayNoResults(message) {
+      if (resultsChart) resultsChart.destroy();
+      canvas.style.display = 'none';
+      let noResultDiv = chartContainer.querySelector('.no-result-message');
+      if (!noResultDiv) {
+          noResultDiv = document.createElement('div');
+          noResultDiv.className = 'no-result-message';
+          Object.assign(noResultDiv.style, { textAlign: 'center', padding: '30px', fontWeight: 'bold', color: '#555' });
+          chartContainer.appendChild(noResultDiv);
+      }
+      noResultDiv.textContent = `🚫 ${message}`;
+  }
 
-updateChart('positions');
+  function clearNoResultsMessage() {
+       const noResultDiv = chartContainer.querySelector('.no-result-message');
+       if (noResultDiv) noResultDiv.remove();
+  }
+
+  function generateColors(count, forBorder = false) {
+      const colors = ['#a69ef7','#6f6be0','#4e49a4','#ffd700','#ffb14e','#fa8775','#ff6b6b','#f06595','#cc5de8','#845ef7','#5c7cfa','#339af0','#22b8cf','#20c997','#51cf66','#94d82d','#fcc419','#ff922b'];
+      const generated = [];
+      for (let i = 0; i < count; i++) {
+          let color = colors[i % colors.length];
+          if (forBorder) {
+               try { // Add error handling for color parsing
+                    let rgb = parseInt(color.substring(1), 16);
+                    let r = Math.max(0, (rgb >> 16 & 0xFF) - 30);
+                    let g = Math.max(0, (rgb >> 8 & 0xFF) - 30);
+                    let b = Math.max(0, (rgb & 0xFF) - 30);
+                    color = `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
+               } catch { /* Use original color if parsing fails */ }
+          }
+          generated.push(color);
+      }
+      return generated;
+  }
+
+  function disablePositionButtons() {
+      positionButtons.forEach(button => button.disabled = true);
+  }
+
+  function setActiveButton(activePositionId) {
+       positionButtons.forEach(btn => {
+           if (positionMap[btn.textContent] === activePositionId) {
+               btn.classList.add('active');
+           } else {
+               btn.classList.remove('active');
+           }
+       });
+  }
+
+  // --- Setup Position Buttons ---
+  function setupPositionButtons() {
+      if (positionButtons.length === 0) { console.warn("Position buttons not found."); return; }
+
+      positionButtons.forEach(button => {
+          const buttonText = button.textContent;
+          // Disable the generic "Positions" button if it exists and shouldn't be clickable
+          if (buttonText === 'Positions') {
+               button.disabled = true;
+               button.style.opacity = 0.6;
+               return; // Skip adding click listener to this one
+          }
+
+          button.addEventListener('click', () => {
+              positionButtons.forEach(btn => btn.classList.remove('active')); // Deactivate all
+              button.classList.add('active'); // Activate clicked
+
+              const positionId = positionMap[buttonText];
+              if (positionId) {
+                   updateChartForPosition(positionId);
+              } else {
+                   console.warn("No mapping found for button:", buttonText);
+                   displayNoResults("Invalid position selected.");
+              }
+          });
+      });
+  }
+
+  // --- Initial Fetch ---
+  fetchResults();
+
+  // Timer and nav handled by shared-dashboard.js
+
+}); // End DOMContentLoaded

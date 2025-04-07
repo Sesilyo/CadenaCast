@@ -1,0 +1,161 @@
+/* Filename: src/styles/CBD-tres-page.css */
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Styles specific to the content INSIDE #main for Treasurer page */
+  #main h1 {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 40px;
+  }
+  
+  #form1 { /* Kept to match structure */
+    width: 100%;
+    max-width: 1000px;
+    padding: 20px;
+    border-radius: 30px;
+    margin: 0 auto;
+    margin-bottom: 40px;
+  }
+  
+  /* Container for the cards */
+  #treasurer-candidates { /* Still use specific ID for the container */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin: 0 auto;
+    max-width: 1000px;
+  }
+  
+  /* *** USING GENERIC CLASS NAME *** */
+  .candidate-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 45%;
+    min-width: 280px;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+  }
+  
+  /* Apply styles to elements WITHIN the generic card class */
+  .candidate-card img {
+    width: 100%;
+    max-width: 250px;
+    height: 200px;
+    border-radius: 8px;
+    object-fit: cover;
+    margin-bottom: 10px;
+  }
+  
+  .candidate-card h2 {
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    line-height: 1.3;
+    min-height: 3.9em;
+  }
+  
+  .candidate-card button {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: auto;
+    transition: background-color 0.3s;
+    width: 80%;
+    max-width: 150px;
+  }
+  
+  .candidate-card button:hover {
+    background-color: #333;
+  }
+  
+  
+  /* ===== START: MODAL STYLES (Copied) ===== */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  #modal-content {
+    background-color: white;
+    padding: 20px 30px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  }
+  
+  #modal-title {
+      margin-top: 0;
+      margin-bottom: 15px;
+      font-size: 1.4em;
+      color: #333;
+  }
+  
+  #modal-body {
+      margin-bottom: 20px;
+      font-size: 1em;
+      line-height: 1.5;
+      color: #555;
+      text-align: left;
+  }
+  
+  #modal-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  
+  .modal-button {
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 48%;
+    font-weight: bold;
+    border: none;
+  }
+  
+  #confirm-btn {
+    background-color: #000000;
+    color: white;
+  }
+  #confirm-btn:hover {
+      background-color: #333;
+  }
+  
+  #cancel-btn {
+    background-color: #636262;
+    color: white;
+  }
+  #cancel-btn:hover {
+      background-color: #555;
+  }
+  
+  .hidden {
+    display: none !important;
+  }
+  /* ===== END: MODAL STYLES ===== */

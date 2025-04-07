@@ -3,68 +3,66 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cadena Cast</title>
+  <title>Cadena Cast - Connect Wallet</title>
+
+  <!-- Layout CSS -->
+  <link rel="stylesheet" href="../../styles/dashboard-layout.css" />
+  <!-- Page Specific CSS -->
   <link rel="stylesheet" href="../../styles/CA-connect-metamask-page.css" />
+  <!-- Fonts -->
   <link href="https://fonts.cdnfonts.com/css/norwester" rel="stylesheet">
+
+  <!-- Scripts -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  <script src="../../scripts/shared-dashboard.js"></script>
+
 </head>
 <body>
-  <div id="admin-container">
+  <div id="user-dashboard-container">
+    <!-- Sidebar -->
     <div id="sidebar">
       <div>
         <div id="logo">ELECTIONS<br>2025</div>
         <div id="countdown">
-          <div class="label">Voting opens in:</div>
-          <div id="countdown-timer">
-            <span id="days">0d </span>
-            <span id="hours">0h </span>
-            <span id="minutes">0m </span>
-            <span id="seconds">0s</span>
+            <div class="label">Voting opens in:</div>
+            <div id="countdown-timer">
+              <span id="days">0d </span>
+              <span id="hours">0h </span>
+              <span id="minutes">0m </span>
+              <span id="seconds">0s</span>
+            </div>
           </div>
-        </div>
-
         <nav id="main-nav">
-          <a href="./CA-connect-metamask-page.html" class="nav-item active">🔗 Connect Wallet</a>
-          <a href="./CB-vote-page.html" class="nav-item protected-link locked">
-            🗳️ Vote <span class="lock-icon">🔒</span>
-          </a>
-          <a href="./CC-result-page.html" class="nav-item protected-link locked">
-            📊 Results <span class="lock-icon">🔒</span>
-          </a>
-          <a href="./CD-logout.html" class="nav-item">⚙️ Log-Out</a>
+            <a href="./CA-connect-metamask-page.html" class="nav-item">🔗 Connect Wallet</a>
+            <a href="./CB-vote-page.html" class="nav-item">🗳️ Vote</a>
+            <a href="./CC-result-page.html" class="nav-item">📊 Results</a>
+            <a href="./CD-logout.html" class="nav-item">⚙️ Log-Out</a>
         </nav>
-
         <div id="powered">POWERED BY:</div>
-
         <div id="bottom-image-container">
           <img src="../../resources/cadenacast logos/Cadena Cast-1.png" alt="Logo" id="bottom-image" />
         </div>
       </div>
-    </div>
+    </div> <!-- End Sidebar -->
 
+    <!-- Main Content -->
     <div id="main">
       <h1><strong>Connect Wallet<br>To Cast A Vote</strong></h1>
       <main>
-        <div id="logIn-form">
-          <form id="form1">
-            <p id="p1">In order to vote, connect your MetaMask (or other cryptocurrency<br> wallets). Please don't forget to disconnect after you have voted.</p>
-            <button type="button" id="connect-wallet-btn">Connect Wallet</button>
-          </form>
+        <div id="logIn-form"> <!-- Changed ID -->
+            <form id="form1">
+                <p id="p1">In order to vote, connect your Metamask account (or other cryptocurrency<br> Wallets). Please don't forget to disconnect after you have voted.
+                </p>
+                    <button type="button">Connect Wallet</button>
+            </form>
         </div>
       </main>
-    </div>
-  </div>
+    </div> <!-- End Main -->
 
-  <div id="modal" class="modal-overlay hidden">
-    <div id="modal-content">
-      <h2 id="modal-title"></h2>
-      <p id="modal-body"></p>
-      <div id="modal-actions">
-        <button id="confirm-btn" class="modal-button">Confirm</button>
-        <button id="cancel-btn" class="modal-button">Cancel</button>
-      </div>
-    </div>
-  </div>
+  </div> <!-- End user-dashboard-container -->
 
+  <!-- Page Specific Script -->
   <script src="../../scripts/CA-connect-metamask.js"></script>
 </body>
 </html>

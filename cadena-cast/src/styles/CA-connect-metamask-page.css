@@ -93,6 +93,8 @@ body {
   flex: 1;
   background: #fff;
   padding: 40px;
+  display: flex;
+  flex-direction: column;
 }
 
 #main h1 {
@@ -194,4 +196,3 @@ button:hover {
   pointer-events: none;
   opacity: 0.6;
 }
-

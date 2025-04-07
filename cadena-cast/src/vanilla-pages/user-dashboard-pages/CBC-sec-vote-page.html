@@ -3,43 +3,63 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cadena Cast</title>
-  <link rel="stylesheet" href="../../styles/CBA-pres-vote-page.css" />
+  <title>Cadena Cast - Vote Secretary</title>
+  <!-- Layout CSS -->
+  <link rel="stylesheet" href="../../styles/dashboard-layout.css" />
+  <!-- Page Specific CSS -->
+   <!-- *** CORRECTED: Assuming you have CBC-sec-vote-page.css OR reuse CBA one *** -->
+  <link rel="stylesheet" href="../../styles/CBC-sec-vote-page.css" />
+  <!-- Fonts -->
   <link href="https://fonts.cdnfonts.com/css/norwester" rel="stylesheet">
+  <!-- Scripts -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  <script src="../../scripts/shared-dashboard.js"></script>
 </head>
 <body>
- 
-    <div id="main">
-      <h1><strong>Your Vote,<br>Your Voice,<br>For Virtue</strong></h1>
-     
-    <main>
-        <div id="president-candidates">
-          <h3 id="positions">Positions</h3>
-            <form id="form1">
-              <div class="pres-candidate-cards">
-                <img src="https://static.vecteezy.com/system/resources/thumbnails/008/695/917/small_2x/no-image-available-icon-simple-two-colors-template-for-no-image-or-picture-coming-soon-and-placeholder-illustration-isolated-on-white-background-vector.jpg"
-                       width="250px">
-                  <h2>⚫#8 Secratary Candidate A | Last Name, First Name MI. (suffix)</h2>
-                <p>Last Name, First Name MI.</p>
-                <button>
-                  <a href="../user-dashboard-pages/CB-vote-page.html">Vote</a>
-                </button>
+  <div id="user-dashboard-container">
+      <!-- Sidebar -->
+      <div id="sidebar">
+           <!-- (Paste Same Sidebar HTML) -->
+           <div><div id="logo">ELECTIONS<br>2025</div><div id="countdown"><div class="label">Voting opens in:</div><div id="countdown-timer"><span id="days">0d </span><span id="hours">0h </span><span id="minutes">0m </span><span id="seconds">0s</span></div></div><nav id="main-nav"><a href="./CA-connect-metamask-page.html" class="nav-item">🔗 Connect Wallet</a><a href="./CB-vote-page.html" class="nav-item">🗳️ Vote</a><a href="./CC-result-page.html" class="nav-item">📊 Results</a><a href="./CD-logout.html" class="nav-item">⚙️ Log-Out</a></nav><div id="powered">POWERED BY:</div><div id="bottom-image-container"><img src="../../resources/cadenacast logos/Cadena Cast-1.png" alt="Logo" id="bottom-image" /></div></div>
+      </div> <!-- End Sidebar -->
+
+      <!-- Main Content -->
+      <div id="main">
+          <h1><strong>Vote for<br>Secretary</strong></h1>
+          <main>
+              <!-- *** CONTAINER ID MATCHES JS *** -->
+              <div id="secretary-candidates">
+                   <!-- Example Static Candidates -->
+                   <!-- *** USING GENERIC CLASS "candidate-card" *** -->
+                   <div class="candidate-card">
+                      <img src="https://static.vecteezy.com/system/resources/thumbnails/008/695/917/small_2x/no-image-available-icon-simple-two-colors-template-for-no-image-or-picture-coming-soon-and-placeholder-illustration-isolated-on-white-background-vector.jpg" width="250px" alt="Secretary Candidate A Photo">
+                      <h2>⚫#8 Secretary Candidate A | Fallarme, John N. 8</h2>
+                       <!-- *** Data Attributes Updated *** -->
+                      <button type="button" data-position-id="secretary" data-candidate-id="sec_cand_a" data-candidate-name="Secretary Candidate A">Vote</button>
+                  </div>
+                   <div class="candidate-card">
+                      <img src="https://static.vecteezy.com/system/resources/thumbnails/008/695/917/small_2x/no-image-available-icon-simple-two-colors-template-for-no-image-or-picture-coming-soon-and-placeholder-illustration-isolated-on-white-background-vector.jpg" width="250px" alt="Secretary Candidate B Photo">
+                      <h2>⚫#9 Secretary Candidate B | Fallarme, John N. 9</h2>
+                      <button type="button" data-position-id="secretary" data-candidate-id="sec_cand_b" data-candidate-name="Secretary Candidate B">Vote</button>
+                  </div>
               </div>
-
-              <div class="pres-candidate-cards">
-                <img src="https://static.vecteezy.com/system/resources/thumbnails/008/695/917/small_2x/no-image-available-icon-simple-two-colors-template-for-no-image-or-picture-coming-soon-and-placeholder-illustration-isolated-on-white-background-vector.jpg"
-                       width="250px">
-                  <h2>⚫#9 Secretary B | Last Name, First Name MI. (suffix)</h2>
-                <p>Last Name, First Name MI.</p>
-                <button>
-                  <a href="../user-dashboard-pages/CB-vote-page.html">Vote</a>
-                </button>
+          </main>
+           <!-- Modal HTML Structure -->
+          <div id="modal" class="modal-overlay hidden">
+            <div id="modal-content">
+              <h2 id="modal-title">Modal Title</h2>
+              <p id="modal-body">Modal content goes here.</p>
+              <div id="modal-actions">
+                <button id="cancel-btn" class="modal-button">Cancel</button>
+                <button id="confirm-btn" class="modal-button">Confirm</button>
               </div>
-            </form>
-        </div>
-    </main>
+            </div>
+          </div>
+      </div> <!-- End Main -->
+  </div> <!-- End user-dashboard-container -->
 
-
-  <script src="../../scripts/CB-vote-page.js"></script>
+  <!-- Page Specific Script -->
+  <script src="../../scripts/CBC-sec-vote-page.js"></script>
 </body>
 </html>

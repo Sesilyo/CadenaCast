@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head> <!-- Added opening html and corrected head -->
     <meta charset="UTF-8">
     <title>Log In Page</title>
     <link rel="stylesheet" href="../styles/AA-login-page.css">
     <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/norwester">
+    <!-- Add Firebase SDKs needed by the JS -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+</head> <!-- *** MISSING closing </head> tag ADDED *** -->
 <body>
 
     <header>
@@ -18,15 +23,15 @@
 
     <main>
         <div id="logIn-form">
-            <form id="form1">
-                <h3 id="personal-information">Personal Information</h3>
-                <p>Please provide accurate information to continue</p>
+            <form id="form1"> <!-- This ID is used by JS -->
+                <h3 id="personal-information">Personal Information / Log In</h3>
+                <p>Provide info to register, or enter National ID to log in.</p>
 
                 <label for="input-firstName">First Name</label><br>
-                <input id="input-firstName" type="text">
+                <input id="input-firstName" type="text"> <!-- Removed required -->
 
                 <div id="suffix-wrapper">
-                    <label for="input-s">Suffix</label>
+                    <label for="input-suffix">Suffix</label> <!-- *** Corrected label 'for' to match select ID *** -->
                     <select id="input-suffix" name="suffix">
                         <option value="None">N/A</option>
                         <option value="Senior">Sr.</option>
@@ -34,59 +39,69 @@
                         <option value="Third">III</option>
                         <option value="Others">Others (please specify)</option>
                     </select>
-                  
+
                     <input type="text" id="other-suffix" name="other-suffix" placeholder="Please specify suffix" style="display: none;">
-                    
-                    <button type="button"  class="back-to-dropdown" id="back-to-dropdown" style="display: none; margin-top: 5px;">Back to Suffix Options</button>
+
+                    <button type="button" class="back-to-dropdown" id="back-to-dropdown" style="display: none; margin-top: 5px;">Back to Suffix Options</button>
                   </div>
-                
+
 
                   <div class="middle-name-container">
-                    <div id="input-middle-name" class="middle-name-label">
+                    <div id="input-middle-name-label" class="middle-name-label"> <!-- Changed ID slightly to avoid conflict if JS selected by ID, though class selection is fine -->
                         <p>Middle Name</p>
                         <div class="no-middle-name">
                             <input type="checkbox" id="no-middle-name">
                             <label for="no-middle-name">No middle name</label>
                         </div>
                     </div>
-                    <input type="text">
+                    <!-- *** Added id="input-middleName" for JS targeting *** -->
+                    <input type="text" id="input-middleName">
                 </div>
 
                 <label for="input-lastName">Last Name</label>
-                <input id="input-lastName" type="text">
+                <input id="input-lastName" type="text"> <!-- Removed required -->
 
                 <label for="input-birthDate">Birth Date</label>
-                <input id="input-birthDate" type="date">
+                <input id="input-birthDate" type="date"> <!-- Removed required -->
 
                 <div id="places-container">
                     <label for="region">Region</label>
-                    <select id="region">
-                      <option value="select-region">-- Select Region --</option>
+                    <select id="region"> <!-- Removed required -->
+                      <!-- Options will be populated by JS -->
+                      <option value="">-- Select Region --</option>
                     </select>
-                
+
                     <label for="province">Province</label>
-                    <select id="province" disabled>
-                    <option value="select-province">-- Select Province --</option>
+                    <select id="province" disabled> <!-- Removed required -->
+                       <option value="">-- Select Province --</option>
                     </select>
-                
+
                     <label for="city">City/Municipality</label>
-                    <select id="city" disabled>
-                      <option value="select-city">-- Select City/Municipality --</option>
+                    <select id="city" disabled> <!-- Removed required -->
+                       <option value="">-- Select City/Municipality --</option>
                     </select>
                   </div>
 
                 <label for="input-nationalIDNumber">National ID Card Number</label>
-                <input id="input-nationalIDNumber" type="text">
-                
-               
-                <p>By clicking 'Continue' you agree with the Terms and Privacy Policy</p>
-                <a href="AB-verification-page.html">
-                    <button type="button">Continue</button>
-                </a>
+                <!-- Keep required here if desired, or remove if admin should not even need this -->
+                <input id="input-nationalIDNumber" type="text" required>
+
+                <!-- Status Message Area - Ensure these divs exist inside the form -->
+                <div id="status-message" style="color: red; margin-top: 15px; margin-bottom: 5px; font-weight: bold; width: 100%; text-align: center; min-height: 1.2em;"></div>
+                <div id="loading-spinner" style="display: none; text-align: center; margin-top: 5px; margin-bottom: 10px; width: 100%;">Loading...</div>
+
+
+                <p>By clicking 'Continue' you agree with the Terms and Privacy Policy or attempt to log in.</p>
+
+                <!-- *** REMOVED surrounding <a> tag *** -->
+                <!-- *** Changed button type to "submit" *** -->
+                <button type="submit" id="continue-button">Continue</button>
+
             </form>
         </div>
     </main>
 
+    <!-- Script tag at the end is correct -->
     <script src="../scripts/AA-login-page.js"></script>
 </body>
 </html>
