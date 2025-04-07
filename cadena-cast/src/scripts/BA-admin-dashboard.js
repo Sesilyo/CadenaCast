@@ -20,17 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
       console.warn("[Admin Dashboard] User is not identified as admin in sessionStorage. Blocking access.");
       alert("Access Denied. Admin privileges required.");
       // Option 1: Redirect (Uncomment if you have a login page)
-      // window.location.href = '../../vanilla-pages/AA-login-page.html'; // Corrected redirect path if blocking
-      // Option 2: Block content
-      const mainContentArea = document.getElementById('main');
-      if (mainContentArea) {
-           mainContentArea.innerHTML = '<h1 style="color:red; text-align: center; margin-top: 50px;">ACCESS DENIED</h1><p style="text-align:center;">You do not have permission to view this page.</p>';
-      }
-      const sidebarArea = document.getElementById('sidebar');
-      if (sidebarArea) {
-          sidebarArea.style.display = 'none';
-      }
-      return; // Stop script execution
+       window.location.href = '../../vanilla-pages/AA-login-page.html'; // Corrected redirect path if blocking
+      return; // Stop script execution if blocking access
   }
   const adminId = sessionStorage.getItem('adminId') || 'Admin'; // Get Admin ID for display
 
@@ -255,7 +246,11 @@ document.addEventListener('DOMContentLoaded', () => {
               statusBanner.textContent = "UPDATING STATUS...";
               statusBanner.className = 'status-updating'; // Optional styling for updating state
 
-              await setElectionStatus(newStatus); // Call shared function to update Firestore
+              // --- Call shared function to update Firestore ---
+              // NOTE: This will likely FAIL with "Permission Denied" until
+              // proper admin authentication and Firestore rules are implemented.
+              await setElectionStatus(newStatus);
+              // -------------------------------------------------
 
               // Success: Update UI immediately and show confirmation
               updateStatusDisplay(newStatus); // Update banner and enable/disable controls
@@ -264,8 +259,8 @@ document.addEventListener('DOMContentLoaded', () => {
           } catch (error) {
               // Error during update
               console.error(`[Admin Dashboard] Failed to set status to ${newStatus}:`, error);
-               // Display specific permission error if caught (most likely cause)
-               if (error.message && error.message.toLowerCase().includes("permission")) { // Check error message content
+               // Display specific permission error if caught
+               if (error.message && error.message.toLowerCase().includes("permission")) {
                    alert(`Error updating status: Permission Denied. Ensure admin user is properly authenticated with write privileges in Firestore rules.\n(${error.message})`);
                } else {
                   alert(`Error updating status: ${error.message}. Please try again.`);
