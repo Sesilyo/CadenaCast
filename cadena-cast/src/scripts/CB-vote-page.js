@@ -1,10 +1,7 @@
-// Filename: ../../scripts/CB-vote-page.js
-// Desc: Main voting page, links to positions. Checks vote status *before* showing appropriate modal.
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log("CB Vote Page: Initializing...");
 
-    // --- Access Control & Setup Checks ---
     if (typeof isWalletConnected !== 'function' || typeof redirectToWalletPage !== 'function' || typeof firestoreDB === 'undefined' || !firestoreDB) {
          console.error("CB Vote Page: Shared functions or Firestore DB not loaded! Cannot proceed.");
          alert("Page loading error. Please refresh.");
@@ -14,19 +11,17 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!isWalletConnected()) {
         console.log("CB Vote Page: Wallet not connected, redirecting.");
         redirectToWalletPage();
-        return; // Stop script execution
+        return;
     }
     const loggedInUserNID = sessionStorage.getItem('loggedInUserNID');
     if (!loggedInUserNID) {
         console.error("CB Vote Page: User NID not found in session storage.");
         alert("Authentication error. Please log in again.");
-        // Optionally redirect to login or show a message
         document.body.innerHTML = "<p style='color:red; text-align:center;'>Authentication Error. Please log in.</p>";
-        return; // Stop script execution
+        return;
     }
     console.log(`CB Vote page: Wallet connected, User NID (${loggedInUserNID}) found.`);
 
-    // --- Get Modal Elements ---
     const modal = document.getElementById('modal');
     const modalTitle = document.getElementById('modal-title');
     const modalBody = document.getElementById('modal-body');
@@ -36,15 +31,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!modalElementsExist) {
         console.error("CB Vote Page: One or more modal elements (modal, modal-title, modal-body, confirm-btn, cancel-btn) not found! Modal functionality will be broken.");
-        // We don't necessarily stop the script, but modals won't work as expected.
-        // Fallback behavior (direct navigation) might be triggered later if modals are needed.
     } else {
          console.log("CB Vote Page: Modal elements found.");
     }
 
-    // --- Position Link Logic ---
-    const positionLinks = document.querySelectorAll('.position-link'); // Select all links with this class
-    let targetVotePage = ''; // Store the href for the confirmed navigation action
+    const positionLinks = document.querySelectorAll('.position-link');
+    let targetVotePage = '';
 
     console.log(`CB Vote Page: Found ${positionLinks.length} position links.`);
 
