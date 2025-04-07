@@ -1,5 +1,5 @@
 // Filename: ../../scripts/CB-vote-page.js
-// Desc: Main voting page. Checks GLOBAL status, user's vote status, shows NAV confirmation modal. Adds VISIBILITY *informational* warning for THIS page.
+// Desc: Main voting page. Checks GLOBAL status, user's vote status, shows NAV confirmation modal, and adds VISIBILITY informational warning.
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log("[CBVotePage] DOMContentLoaded triggered. Initializing...");
@@ -32,49 +32,22 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log("[CBVotePage] UI elements check passed.");
 
     // --- State ---
-    let targetVotePage = ''; // Store href for navigation action
-    let visibilityChangeListenerAttached = false; // Track listener for THIS page
-    // let navigatedAway = false; // REMOVED - We won't track explicit navigation this way
+    let targetVotePage = '';
+    let visibilityChangeListenerAttached = false;
+    let isVotingGloballyEnabled = false; // <<<--- Add state variable to track global status
 
-    // --- Visibility Change Handler (Informational Only) ---
-    // ***** MODIFIED: Removed redirect, simpler warning *****
-    const handleVisibilityChange = () => {
-        // Only trigger if page becomes hidden
-        if (document.hidden) {
-            console.info("[CBVotePage] Position selection page hidden (tab switch, etc.).");
-            // Optional: You could show a subtle indicator on the page itself when they return,
-            // instead of an alert, e.g., "You switched away, please review your selection."
-            // For now, we just log it. The primary protection is on the individual voting pages.
-            // alert("Note: You navigated away from the position selection page."); // Removed alert as it's annoying on valid navigation
-        } else {
-            console.info("[CBVotePage] Position selection page became visible again.");
-        }
-    };
-
-    function attachVisibilityListener() {
-        if (!visibilityChangeListenerAttached) {
-            console.log("[CBVotePage] Attaching visibility change listener for position selection page.");
-            // navigatedAway = false; // REMOVED
-            document.addEventListener('visibilitychange', handleVisibilityChange);
-            visibilityChangeListenerAttached = true;
-        }
-    }
-
-    function detachVisibilityListener() {
-        if (visibilityChangeListenerAttached) {
-            console.log("[CBVotePage] Detaching visibility change listener for position selection page.");
-            document.removeEventListener('visibilitychange', handleVisibilityChange);
-            visibilityChangeListenerAttached = false;
-        }
-    }
+    // --- Visibility Change Handler (Informational Only - Keep as before) ---
+    const handleVisibilityChange = () => { /* ... console.info logs ... */ if (document.hidden) { console.info("[CBVotePage] Position selection page hidden."); } else { console.info("[CBVotePage] Position selection page visible."); } };
+    function attachVisibilityListener() { if (!visibilityChangeListenerAttached) { console.log("[CBVotePage] Attaching visibility listener."); document.addEventListener('visibilitychange', handleVisibilityChange); visibilityChangeListenerAttached = true; } }
+    function detachVisibilityListener() { if (visibilityChangeListenerAttached) { console.log("[CBVotePage] Detaching visibility listener."); document.removeEventListener('visibilitychange', handleVisibilityChange); visibilityChangeListenerAttached = false; } }
 
     // --- Disable Links Function (Keep as before) ---
     function setPositionLinksState(enabled, message = "") {
         // ... (Keep the implementation that targets #pos and hides/shows <p> tags) ...
-        console.log(`[CBVotePage-SetState] Called with enabled=${enabled}, message="${message}"`);
+         console.log(`[CBVotePage-SetState] Called with enabled=${enabled}, message="${message}"`);
         if (!positionLinksContainer) { console.error("[CBVotePage-SetState] #pos null!"); return; }
         let messageElement = positionLinksContainer.querySelector('.election-status-message');
-        if (!messageElement) { messageElement = document.createElement('div'); messageElement.className = 'election-status-message'; /* Apply styles */ messageElement.style.textAlign = 'center'; messageElement.style.padding = '30px'; messageElement.style.marginTop = '20px'; messageElement.style.fontWeight = 'bold'; messageElement.style.color = '#555'; messageElement.style.border = '1px solid #ddd'; messageElement.style.borderRadius = '8px'; messageElement.style.backgroundColor = '#f8f8f8'; messageElement.style.display = 'none'; positionLinksContainer.appendChild(messageElement); }
+        if (!messageElement) { messageElement = document.createElement('div'); messageElement.className = 'election-status-message'; /* Apply styles */ messageElement.style.cssText = "text-align:center; padding: 30px; margin-top: 20px; font-weight: bold; color: #555; border: 1px solid #ddd; border-radius: 8px; background-color: #f8f8f8; display: none;"; positionLinksContainer.appendChild(messageElement); console.log("[CBVotePage-SetState] Created message element."); }
         const linkParagraphs = positionLinksContainer.querySelectorAll('p.position-row');
         if (enabled) { console.log("[CBVotePage-SetState] Enabling links."); positionLinks.forEach(link => { link.style.opacity = '1'; link.style.pointerEvents = 'auto'; link.style.cursor = 'pointer'; }); linkParagraphs.forEach(p => p.style.display = ''); messageElement.style.display = 'none'; messageElement.textContent = '';
         } else { console.log("[CBVotePage-SetState] Disabling links."); positionLinks.forEach(link => { link.style.opacity = '0.5'; link.style.pointerEvents = 'none'; link.style.cursor = 'not-allowed'; }); linkParagraphs.forEach(p => p.style.display = 'none'); messageElement.textContent = message; messageElement.style.display = 'block'; }
@@ -82,59 +55,82 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
      // --- Function to Check User Vote Status (Keep as before) ---
-    async function checkIfAlreadyVoted(positionId) {
-        // ... (Keep the implementation) ...
-         console.log(`[CBVotePage-CheckVote] Checking if user ${loggedInUserNID} voted for ${positionId}`); if (!loggedInUserNID) throw new Error("User session missing."); if (!positionId) throw new Error("Position ID missing."); if (!firestoreDB) throw new Error("Database connection error."); const userVoteDocId = `${loggedInUserNID}_${positionId}`; const userVoteRef = firestoreDB.collection('userVotes').doc(userVoteDocId); try { const docSnap = await userVoteRef.get(); return docSnap.exists; } catch (error) { console.error(`[CBVotePage-CheckVote] Read error:`, error); throw new Error(`Database error.`); }
-    }
+    async function checkIfAlreadyVoted(positionId) { /* ... */ console.log(`[CBVotePage-CheckVote] Checking vote for ${positionId}`); if (!loggedInUserNID) throw new Error("NID missing."); if (!positionId) throw new Error("Pos ID missing."); if (!firestoreDB) throw new Error("DB error."); const voteId = `${loggedInUserNID}_${positionId}`; const voteRef = firestoreDB.collection('userVotes').doc(voteId); try { const doc = await voteRef.get(); return doc.exists; } catch (err) { console.error(`Vote check error:`, err); throw new Error(`DB error.`); } }
 
-    // --- Modal Functions ---
+    // --- Modal Functions (Keep as before, ensure detach listener only on proceed) ---
     function openNavigationConfirmModal(positionName) {
-        console.log(`[CBVotePage-Modal] Opening navigation confirm modal for ${positionName}`);
-        if (!modalElementsExist) { // Fallback
-            if(confirm(`Proceed to vote for ${positionName}? Please complete your vote on the next page.`)) {
-                // --- Detach listener ONLY when proceeding to vote ---
-                detachVisibilityListener();
-                // --------------------------------------------------
-                if (targetVotePage) window.location.href = targetVotePage; else console.error("Target page URL missing.");
-            } else { console.log("Navigation cancelled."); }
-            return;
-        }
-        // Standard modal logic
-        modalTitle.textContent = `Proceed to Vote for ${positionName}?`;
-        modalBody.textContent = `You are about to navigate to the voting page for ${positionName}. Please complete your vote on that page before navigating elsewhere.`;
-        modalConfirmBtn.textContent = 'Proceed';
-        modalCancelBtn.style.display = '';
-
-        const confirmHandler = () => {
-            console.log("[CBVotePage-Modal] User clicked Proceed.");
-            // --- Detach listener ONLY when proceeding to vote ---
-            detachVisibilityListener();
-            // --------------------------------------------------
-            if (targetVotePage) { window.location.href = targetVotePage; }
-            else { console.error("Target page URL was lost."); alert("Navigation error."); }
-            closeModal();
-        };
-        const cancelHandler = () => { console.log("[CBVotePage-Modal] Navigation cancelled by button."); closeModal(); };
-        const outsideClickHandler = (event) => { if (event.target === modal) { console.log("[CBVotePage-Modal] Navigation cancelled by clicking outside."); closeModal(); } };
-
-        modalConfirmBtn.onclick = confirmHandler; modalCancelBtn.onclick = cancelHandler; modal.onclick = outsideClickHandler;
-        modal.classList.remove('hidden');
+        console.log(`[CBVotePage-Modal] Opening nav confirm for ${positionName}`);
+        if (!modalElementsExist) { if(confirm(`Proceed to vote for ${positionName}?`)) { detachVisibilityListener(); if (targetVotePage) window.location.href = targetVotePage; } else { console.log("Nav cancelled."); } return; }
+        modalTitle.textContent = `Proceed to Vote for ${positionName}?`; modalBody.textContent = `Navigate to the ${positionName} voting page?`; modalConfirmBtn.textContent = 'Proceed'; modalCancelBtn.style.display = '';
+        const confirmH = () => { console.log("Proceed clicked."); detachVisibilityListener(); /* Detach here */ if (targetVotePage) { window.location.href = targetVotePage; } else { console.error("Target missing."); alert("Nav error."); } closeModal(); };
+        const cancelH = () => { console.log("Cancel clicked."); closeModal(); }; const outsideH = (e) => { if (e.target === modal) { console.log("Outside click cancel."); closeModal(); } };
+        modalConfirmBtn.onclick = confirmH; modalCancelBtn.onclick = cancelH; modal.onclick = outsideH; modal.classList.remove('hidden');
     }
-
-    // (Keep openAlreadyVotedModal and closeModal as before)
-    function openAlreadyVotedModal(positionName) { /* ... */ console.log(`[CBVotePage-Modal] Opening already voted modal for ${positionName}`); if (!modalElementsExist) { alert(`You have already submitted your vote for ${positionName}.`); return; } modalTitle.textContent = "Vote Already Cast"; modalBody.textContent = `You have already submitted your vote for ${positionName}.`; modalConfirmBtn.textContent = 'OK'; modalCancelBtn.style.display = 'none'; modalConfirmBtn.onclick = () => { closeModal(); }; modal.onclick = (event) => { if (event.target === modal) closeModal(); }; modal.classList.remove('hidden'); }
-    function closeModal() { /* ... */ console.log("[CBVotePage-Modal] Closing modal."); if (!modalElementsExist) return; modal.classList.add('hidden'); targetVotePage = ''; modalConfirmBtn.onclick = null; modalCancelBtn.onclick = null; modal.onclick = null; modalCancelBtn.style.display = ''; }
+    function openAlreadyVotedModal(positionName) { /* ... (Keep as before) ... */ console.log(`[CBVotePage-Modal] Opening already voted modal for ${positionName}`); if (!modalElementsExist) { alert(`Already voted for ${positionName}.`); return; } modalTitle.textContent = "Vote Already Cast"; modalBody.textContent = `Already voted for ${positionName}.`; modalConfirmBtn.textContent = 'OK'; modalCancelBtn.style.display = 'none'; modalConfirmBtn.onclick = closeModal; modal.onclick = (e) => { if (e.target === modal) closeModal(); }; modal.classList.remove('hidden'); }
+    function closeModal() { /* ... (Keep as before) ... */ console.log("[CBVotePage-Modal] Closing modal."); if (!modalElementsExist) return; modal.classList.add('hidden'); targetVotePage = ''; modalConfirmBtn.onclick = null; modalCancelBtn.onclick = null; modal.onclick = null; modalCancelBtn.style.display = ''; }
 
 
-    // --- Handler for Position Link Click (Keep as before) ---
+    // --- Handler for Position Link Click (Added Global Check) ---
     async function handlePositionLinkClick(event) {
-        // ... (Keep the implementation) ...
-        event.preventDefault(); const link = event.currentTarget; const positionId = link.dataset.positionId; const positionDisplayName = link.dataset.positionName || link.textContent.trim(); const nextPageUrl = link.href; console.log(`[CBVotePage-LinkClick] Clicked link for ${positionDisplayName}`); if (!positionId || !nextPageUrl || nextPageUrl === '#') { return; } console.log("[CBVotePage-LinkClick] Checking user vote status..."); link.style.opacity = '0.6'; const originalPointerEvents = link.style.pointerEvents; link.style.pointerEvents = 'none'; try { const hasVoted = await checkIfAlreadyVoted(positionId); targetVotePage = nextPageUrl; if (hasVoted) { openAlreadyVotedModal(positionDisplayName); } else { openNavigationConfirmModal(positionDisplayName); } } catch (error) { console.error(`[CBVotePage-LinkClick] Error:`, error); alert(`Could not check status. Error: ${error.message}`); targetVotePage = ''; } finally { link.style.opacity = '1'; link.style.pointerEvents = originalPointerEvents || 'auto'; console.log(`[CBVotePage-LinkClick] Finished processing click.`); }
+        event.preventDefault();
+
+        // ----- ADDED CHECK: Ensure voting is actually enabled globally -----
+        if (!isVotingGloballyEnabled) {
+            console.warn("[CBVotePage-LinkClick] Click detected but voting is not globally enabled. Ignoring.");
+            // Optionally briefly show the disabled message again
+            // setPositionLinksState(false, "Voting is currently closed or paused.");
+            return; // Do nothing if voting isn't enabled
+        }
+        // -------------------------------------------------------------------
+
+        const link = event.currentTarget;
+        const positionId = link.dataset.positionId;
+        const positionDisplayName = link.dataset.positionName || link.textContent.trim();
+        const nextPageUrl = link.href;
+        console.log(`[CBVotePage-LinkClick] Processing click for ${positionDisplayName}`);
+
+        if (!positionId || !nextPageUrl || nextPageUrl === '#') { console.error("Link missing data."); alert("Link error."); return; }
+
+        console.log("[CBVotePage-LinkClick] Checking user vote status...");
+        link.style.opacity = '0.6'; const originalPointerEvents = link.style.pointerEvents; link.style.pointerEvents = 'none';
+
+        try {
+            const hasVotedForThisPosition = await checkIfAlreadyVoted(positionId);
+            targetVotePage = nextPageUrl;
+            if (hasVotedForThisPosition) { openAlreadyVotedModal(positionDisplayName); } else { openNavigationConfirmModal(positionDisplayName); }
+        } catch (error) { console.error(`[CBVotePage-LinkClick] Error:`, error); alert(`Could not check status: ${error.message}`); targetVotePage = ''; }
+        finally { link.style.opacity = '1'; link.style.pointerEvents = originalPointerEvents || 'auto'; console.log(`[CBVotePage-LinkClick] Finished click processing.`); }
     }
 
-    // --- Attach/Detach Link Listeners (Keep as before) ---
-    function attachPositionLinkListeners() { /* ... */ console.log("[CBVotePage-Listeners] Attaching click listeners..."); let count = 0; positionLinks.forEach(link => { if (!link.hasClickListener) { link.addEventListener('click', handlePositionLinkClick); link.hasClickListener = true; count++; } }); console.log(`[CBVotePage-Listeners] Attached ${count} listeners.`); }
-     function detachPositionLinkListeners() { /* ... */ console.log("[CBVotePage-Listeners] Detaching click listeners..."); let count = 0; positionLinks.forEach(link => { link.removeEventListener('click', handlePositionLinkClick); if (link.hasClickListener) count++; link.hasClickListener = false; }); console.log(`[CBVotePage-Listeners] Detached ${count} listeners.`); }
+    // --- Attach/Detach Link Listeners (Robust version) ---
+    const attachedListeners = new WeakMap(); // Keep track of attached listeners
+
+    function attachPositionLinkListeners() {
+        console.log("[CBVotePage-Listeners] Attaching click listeners...");
+        let count = 0;
+        positionLinks.forEach(link => {
+            if (!attachedListeners.has(link)) { // Check if listener already attached
+                 link.addEventListener('click', handlePositionLinkClick);
+                 attachedListeners.set(link, handlePositionLinkClick); // Store reference
+                 count++;
+             }
+        });
+         console.log(`[CBVotePage-Listeners] Attached ${count} new listeners.`);
+    }
+
+     function detachPositionLinkListeners() {
+         console.log("[CBVotePage-Listeners] Detaching click listeners...");
+         let count = 0;
+         positionLinks.forEach(link => {
+             if (attachedListeners.has(link)) {
+                 const handler = attachedListeners.get(link);
+                 link.removeEventListener('click', handler);
+                 attachedListeners.delete(link); // Remove from tracking
+                 count++;
+             }
+         });
+          console.log(`[CBVotePage-Listeners] Detached ${count} listeners.`);
+     }
 
 
     // --- Initial Page Load Function ---
@@ -152,27 +148,27 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log(`[CBVotePage-Init] getElectionStatus() returned: ${electionStatus}`);
 
             let message = "";
-            let votingEnabled = false;
-            let attachPageVisibilityListener = false; // Flag specific for this page's listener
+            isVotingGloballyEnabled = false; // Reset global state flag
+            let attachPageVisibilityListener = false;
 
             switch (electionStatus) {
                 case "ONGOING":
                     console.log("[CBVotePage-Init] Status ONGOING. Enabling voting & visibility listener.");
-                    votingEnabled = true;
-                    attachPageVisibilityListener = true; // Attach listener ONLY if ongoing
+                    isVotingGloballyEnabled = true; // <-- SET GLOBAL FLAG
+                    attachPageVisibilityListener = true;
                     message = "";
                     break;
-                // ... (other status cases) ...
                 case "NOT_STARTED": message = "Voting has not started yet."; break;
                 case "PAUSED": message = "Voting is currently paused."; break;
                 case "ENDED": message = "Voting has now closed."; break;
                 default: message = "Election status unavailable."; break;
             }
 
-            console.log(`[CBVotePage-Init] Calling setPositionLinksState(${votingEnabled}, "${message}")`);
-            setPositionLinksState(votingEnabled, message);
+            console.log(`[CBVotePage-Init] Calling setPositionLinksState(${isVotingGloballyEnabled}, "${message}")`);
+            setPositionLinksState(isVotingGloballyEnabled, message);
 
-            if (votingEnabled) {
+            // Attach/Detach click listeners based on votingEnabled flag
+            if (isVotingGloballyEnabled) {
                 console.log("[CBVotePage-Init] Attaching link listeners.");
                 attachPositionLinkListeners();
             } else {
@@ -180,20 +176,17 @@ document.addEventListener('DOMContentLoaded', () => {
                  detachPositionLinkListeners();
             }
 
-            // --- Handle Visibility Listener Attachment ---
-            // Attach listener if election is ONGOING, detach otherwise
-            if (attachPageVisibilityListener) {
-                attachVisibilityListener();
-            } else {
-                detachVisibilityListener(); // Ensure listener is detached if not ongoing
-            }
+            // Attach/Detach visibility listener based on attachPageVisibilityListener flag
+            if (attachPageVisibilityListener) { attachVisibilityListener(); }
+            else { detachVisibilityListener(); }
 
         } catch (error) {
             console.error("[CBVotePage-Init] FAILED to get initial election status:", error);
             alert(`Error loading page configuration: ${error.message}. Please refresh.`);
+            isVotingGloballyEnabled = false; // Ensure flag is false on error
             setPositionLinksState(false, `Error loading election status: ${error.message}. Please refresh.`);
             detachPositionLinkListeners();
-            detachVisibilityListener(); // Also detach visibility listener on error
+            detachVisibilityListener();
         }
         console.log("[CBVotePage-Init] initializeVotePage function finished.");
     }
@@ -203,4 +196,4 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', initializeVotePage); } else { initializeVotePage(); }
     console.log("[CBVotePage] CB-vote-page.js script execution finished setup.");
 
-}); // End DOMContentLoaded (outer wrapper)
+}); // End DOMContentLoaded
