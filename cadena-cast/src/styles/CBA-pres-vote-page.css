@@ -1,0 +1,113 @@
+body { 
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+#main h1 {
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+
+#form1 {
+  display: flex;
+  flex-direction: column; /* Align the children vertically */
+  align-items: center; /* Center the content horizontally */
+  width: 48%;
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 30px;
+  background-color: lightgrey;
+  margin: 0 auto; /* Center the form horizontally */
+  margin-bottom: 40px; /* Add some space below the form */
+}
+
+#president-candidates {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Center the candidate cards horizontally */
+  gap: 20px; /* Add space between the cards */
+  margin: 0 auto;
+  max-width: 1000px;  
+}
+
+.pres-candidate-cards {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 45%;  /* Make sure the cards take up 45% of the form's width */
+  background-color: #f9f9f9;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.pres-candidate-cards img {
+  width: 100%;
+  max-width: 250px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.pres-candidate-cards h2 {
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.pres-candidate-cards p {
+  font-size: 14px;
+  color: #555;
+}
+
+.pres-candidate-cards button {
+  background-color:lightblue;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: background-color 0.3s;
+}
+
+.pres-candidate-cards button:hover {
+  background-color: #0056b3;
+}
+
+#positions {
+  font-size: 100%;
+  margin-left: 0;
+  margin-bottom: 20px; 
+  background-color: black;
+  color: white;
+  border: 2px solid black;
+  padding: 10px;
+  text-align: center;
+  border-radius: 100px;
+}
+
+.position-placeholder {
+  cursor: pointer;
+  color: black;
+  text-decoration: underline;
+}
+
+.position-placeholder:hover {
+  color: #0056b3;
+}
+
+
+
+  #positions {
+    width: 100%;  
+    margin-left: 0;
+    margin-bottom: 15px;
+  }
+
+  #form1 {
+    width: 100%;  /* Make the form take up 100% of the screen width on smaller screens */
+  }
+}
