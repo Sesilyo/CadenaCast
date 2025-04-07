@@ -1,3 +1,4 @@
+<!-- CD-logout.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,6 +14,7 @@
   <script src="../../scripts/shared-dashboard.js"></script>
 
 </head>
+<<<<<<< HEAD
 <body>
   <div id="user-dashboard-container">
     <!-- Sidebar -->
@@ -35,13 +37,45 @@
             <div id="bottom-image-container">
                 <img src="../../resources/cadenacast logos/Cadena Cast-1.png" alt="Logo" id="bottom-image" />
             </div>
+=======
+<body class="logout-page">
+  <div id="admin-container">
+    <div id="sidebar">
+      <div>
+        <div id="logo">ELECTIONS<br>2025</div>
+        <div id="countdown">
+          <div class="label">Voting opens in:</div>
+          <div id="countdown-timer">
+            <span id="days">0d </span>
+            <span id="hours">0h </span>
+            <span id="minutes">0m </span>
+            <span id="seconds">0s</span>
+          </div>
+        </div>
+
+        <nav id="main-nav">
+          <a href="./CA-connect-metamask-page.html" class="nav-item">🔗 Connect Wallet</a>
+          <a href="./CB-vote-page.html" class="nav-item protected-link locked">
+            🗳️ Vote <span class="lock-icon">🔒</span>
+          </a>
+          <a href="./CC-result-page.html" class="nav-item protected-link locked">
+            📊 Results <span class="lock-icon">🔒</span>
+          </a>
+          <a href="./CD-logout.html" class="nav-item active">⚙️ Log-Out</a>
+        </nav>
+
+        <div id="powered">POWERED BY:</div>
+
+        <div id="bottom-image-container">
+          <img src="../../resources/cadenacast logos/Cadena Cast-1.png" alt="Logo" id="bottom-image" />
+>>>>>>> 15097ac9795b8410c4bb24c7145becdf21cd7e3b
         </div>
     </div> <!-- End Sidebar -->
 
-    <!-- Main content -->
     <div id="main">
       <h1>Log Out</h1>
 
+<<<<<<< HEAD
       <div id="logout-content-container"> <!-- Ensure CSS targets this or adjust -->
         <h3>Confirm Logout</h3> <!-- Changed heading -->
         <p id="text-logout">Are you sure you want to log out from the CadenaCast voting portal?</p> <!-- Changed text -->
@@ -58,5 +92,80 @@
 
   <!-- Page Specific Script -->
   <script src="../../scripts/CD-logout.js"></script>
+=======
+      <div id="logout-content-container">
+        <h3>Reminder</h3>
+        <p id="text-logout">
+          Before logging out from CadenaCast voting portal, disconnect your Metamask wallet first.
+        </p>
+        <button id="button-logout">Log Out</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ⏳ Countdown Script
+    function startVotingCountdown() {
+      const targetDate = new Date('May 12, 2025 00:00:00').getTime();
+      const daysSpan = document.getElementById('days');
+      const hoursSpan = document.getElementById('hours');
+      const minutesSpan = document.getElementById('minutes');
+      const secondsSpan = document.getElementById('seconds');
+      let interval;
+
+      function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+
+        if (distance <= 0) {
+          daysSpan.textContent = '0d ';
+          hoursSpan.textContent = '0h ';
+          minutesSpan.textContent = '0m ';
+          secondsSpan.textContent = '0s';
+          clearInterval(interval);
+          return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        daysSpan.textContent = `${days}d `;
+        hoursSpan.textContent = `${hours}h `;
+        minutesSpan.textContent = `${minutes}m `;
+        secondsSpan.textContent = `${seconds}s`;
+      }
+
+      updateCountdown();
+      interval = setInterval(updateCountdown, 1000);
+    }
+
+    startVotingCountdown();
+
+    // 🚀 Log Out Button → Redirect to Connect Wallet
+    document.getElementById("button-logout").addEventListener("click", function (e) {
+      e.preventDefault();
+      window.location.href = "./CA-connect-metamask-page.html"; // Redirect only, no disconnect
+    });
+
+    // 🔓 Restore sidebar state if wallet still connected
+    window.addEventListener("DOMContentLoaded", () => {
+      const isConnected = localStorage.getItem("walletConnected") === "true";
+      if (isConnected) {
+        const voteLink = document.querySelector('a[href="./CB-vote-page.html"]');
+        const resultsLink = document.querySelector('a[href="./CC-result-page.html"]');
+
+        voteLink.classList.remove("locked");
+        resultsLink.classList.remove("locked");
+
+        const voteLockIcon = voteLink.querySelector(".lock-icon");
+        const resultLockIcon = resultsLink.querySelector(".lock-icon");
+        if (voteLockIcon) voteLockIcon.style.display = "none";
+        if (resultLockIcon) resultLockIcon.style.display = "none";
+      }
+    });
+  </script>
+>>>>>>> 15097ac9795b8410c4bb24c7145becdf21cd7e3b
 </body>
 </html>
