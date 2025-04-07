@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin Controls</title>
+  <title>Log Out</title>
   <link rel="stylesheet" href="../../styles/CA-connect-metamask-page.css" />
   <link href="https://fonts.cdnfonts.com/css/norwester" rel="stylesheet">
 </head>
@@ -40,31 +40,14 @@
 
     <!-- Main content -->
     <div id="main">
-      <h1>ADMIN CONTROLS</h1>
+      <h1>Log Out</h1>
 
-      <div id="status-banner">
-        STATUS OF ELECTION: NOT STARTED
+      <div id="logout-content-container">
+        <h3>Reminder</h3>
+        <p id="text-logout">Before logging out from CadenaCast voting portal, disconnect your Metamask wallet first.</p>
+        <button id="button-logout">Log Out</button>
       </div>
-
-      <div id="controls">
-        <div class="control-card" data-action="startElection">
-          <div class="icon">▶️</div>
-          <h2>START ELECTION</h2>
-          <p>Initiate the voting process and open polls to all registered voters.</p>
-        </div>
-
-        <div class="control-card" data-action="pauseVoting">
-          <div class="icon">⏸️</div>
-          <h2>PAUSE VOTING</h2>
-          <p>Temporarily suspend voting activity for system maintenance.</p>
-        </div>
-
-        <div class="control-card" data-action="endElection">
-          <div class="icon">⏹️</div>
-          <h2>END ELECTION</h2>
-          <p>Close voting permanently and prepare for results calculation.</p>
-        </div>
-      </div>
+      
     </div>
   </div>
 

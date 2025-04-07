@@ -255,3 +255,10 @@ button {
 #p1 {
   text-align: center;
 }
+
+#logout-content-container {
+  background-color: rgb(211 211 211);
+  padding: 20px;
+  border-radius: 20px;
+  
+}
