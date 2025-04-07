@@ -207,6 +207,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 20px;
 }
 
 #form1 {
@@ -246,4 +247,36 @@ body {
   
   .position-link:hover {
     color: #0056b3;
+  }
+
+  .pres-candidate-cards {
+    background-color: white;
+    padding: 15px;
+    border: solid black;
+    border-width: 1px;
+    border-radius: 20px;
+  }
+
+  .vpres-candidate-cards {
+    background-color: white;
+    padding: 15px;
+    border: solid black;
+    border-width: 1px;
+    border-radius: 20px;
+  }
+
+  .sec-candidate-cards {
+    background-color: white;
+    padding: 15px;
+    border: solid black;
+    border-width: 1px;
+    border-radius: 20px;
+  }
+
+  .treas-candidate-cards {
+    background-color: white;
+    padding: 15px;
+    border: solid black;
+    border-width: 1px;
+    border-radius: 20px;
   }
