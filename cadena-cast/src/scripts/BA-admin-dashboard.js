@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
       console.warn("[Admin Dashboard] User is not identified as admin in sessionStorage. Blocking access.");
       alert("Access Denied. Admin privileges required.");
       // Option 1: Redirect (Uncomment if you have a login page)
-       window.location.href = '../../vanilla-pages/AA-login-page.html'; // Corrected redirect path if blocking
+       window.location.href = 'AA-login-page.html'; // Corrected redirect path if blocking
       return; // Stop script execution if blocking access
   }
   const adminId = sessionStorage.getItem('adminId') || 'Admin'; // Get Admin ID for display
@@ -217,7 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
                   sessionStorage.removeItem('adminId'); // Clear admin ID
                   alert("You have been logged out.");
 
-                  window.location.href = '../../vanilla-pages/AA-login-page.html';
+                  window.location.href = '/cadena-cast/AA-login-page.html';
                   // ***********************************
 
               } else {

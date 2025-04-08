@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Redirect to login page
             alert("You have been logged out.");
             // Adjust path if login page is elsewhere
-            window.location.href = '../AA-login-page.html';
+            window.location.href = '/cadena-cast/AA-login-page.html';
         });
     } else {
         console.error("Logout button (#button-logout) not found.");

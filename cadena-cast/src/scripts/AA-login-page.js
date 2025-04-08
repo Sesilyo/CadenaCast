@@ -1,5 +1,3 @@
-// Filename: ../../scripts/AA-login-page.js
-// Desc: Handles login/registration logic, including admin check.
 
 // --- Firebase Config ---
 const firebaseConfig = {
@@ -84,9 +82,9 @@ const locationData = {
 // --- Admin Configuration ---
 const ADMIN_NATIONAL_ID = "JomafaAdmin123"; // The exact ID the admin uses
 // ** IMPORTANT: Adjust this path based on where AA-login-page.html is located **
-const ADMIN_DASHBOARD_PATH = './admin-dashboard-pages/BA-admin-dashboard.html'; // Example Path - VERIFY THIS
+const ADMIN_DASHBOARD_PATH = 'src/vanilla-pages/admin-dashboard-pages/BA-admin-dashboard.html'; // Example Path - VERIFY THIS
 // ** IMPORTANT: Adjust this path based on where AA-login-page.html is located **
-const USER_DASHBOARD_PATH = './user-dashboard-pages/CA-connect-metamask-page.html'; // Example Path - VERIFY THIS
+const USER_DASHBOARD_PATH = 'src/vanilla-pages/user-dashboard-pages/CA-connect-metamask-page.html'; // Example Path - VERIFY THIS
 
 
 // --- Helper Functions ---
