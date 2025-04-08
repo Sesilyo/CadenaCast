@@ -22,8 +22,8 @@ body {
     margin-bottom: 40px;
   }
   
-  /* Container for the cards */
-  #treasurer-candidates { /* Still use specific ID for the container */
+
+  #treasurer-candidates {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -31,8 +31,7 @@ body {
     margin: 0 auto;
     max-width: 1000px;
   }
-  
-  /* *** USING GENERIC CLASS NAME *** */
+
   .candidate-card {
     display: flex;
     flex-direction: column;
@@ -48,7 +47,6 @@ body {
     box-sizing: border-box;
   }
   
-  /* Apply styles to elements WITHIN the generic card class */
   .candidate-card img {
     width: 100%;
     max-width: 250px;
@@ -83,8 +81,7 @@ body {
     background-color: #333;
   }
   
-  
-  /* ===== START: MODAL STYLES (Copied) ===== */
+
   .modal-overlay {
     position: fixed;
     top: 0;
@@ -158,4 +155,3 @@ body {
   .hidden {
     display: none !important;
   }
-  /* ===== END: MODAL STYLES ===== */

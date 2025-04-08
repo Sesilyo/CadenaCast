@@ -20,7 +20,7 @@
       <div>
         <div id="logo">ELECTIONS<br>2025</div>
         <div id="countdown">
-            <div class="label">Voting status:</div> <!-- Changed label slightly -->
+            <div class="label">Voting status:</div>
             <div id="countdown-timer">
               <span id="days">--d </span>
               <span id="hours">--h </span>
@@ -30,7 +30,7 @@
           </div>
         <nav id="main-nav">
             <a href="./CA-connect-metamask-page.html" class="nav-item" id="nav-connect">🔗 Connect Wallet</a>
-            <a href="./CB-vote-page.html" class="nav-item active" id="nav-vote">🗳️ Vote</a> <!-- Mark as active -->
+            <a href="./CB-vote-page.html" class="nav-item active" id="nav-vote">🗳️ Vote</a>
             <a href="./CC-result-page.html" class="nav-item" id="nav-results">📊 Results</a>
             <a href="./CD-logout.html" class="nav-item" id="nav-logout">⚙️ Log-Out</a>
         </nav>
@@ -61,7 +61,7 @@
                        data-position-name="Vice President">Vice President</a>
                   </strong>
                 </p>
-                <p class="position-row"> <!-- Using paragraphs for structure -->
+                <p class="position-row">
                   <strong>
                     <a href="./CBC-sec-vote-page.html"
                        id="secretary"
@@ -79,14 +79,12 @@
           </div>
       </main>
 
-      <!-- Shared Modal Structure (Used by CB-vote-page.js) -->
-      <!-- Ensure this structure is identical or compatible across pages using the modal -->
       <div id="modal" class="modal-overlay hidden">
         <div id="modal-content">
-          <h2 id="modal-title">Modal Title</h2> <!-- Title set by JS -->
-          <p id="modal-body">Modal content goes here.</p> <!-- Body set by JS -->
+          <h2 id="modal-title">Modal Title</h2>
+          <p id="modal-body">Modal content goes here.</p>
           <div id="modal-actions">
-            <!-- Buttons might be shown/hidden by JS -->
+
             <button id="cancel-btn" class="modal-button cancel">Cancel</button>
             <button id="confirm-btn" class="modal-button confirm">Confirm</button>
           </div>
@@ -96,7 +94,6 @@
     </div> <!-- End Main -->
   </div> <!-- End user-dashboard-container -->
 
-  <!-- Page Specific Script (MUST be AFTER the modal HTML) -->
   <script src="../../scripts/CB-vote-page.js"></script>
 
 </body>
