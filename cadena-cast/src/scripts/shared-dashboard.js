@@ -144,12 +144,12 @@ function highlightActiveNav() {
 }
 
  // --- Wallet Connection Check (Using sessionStorage - Basic) ---
- function isWalletConnected() {
+function isWalletConnected() {
     // Check sessionStorage for the flag set by CA-connect-metamask.js or equivalent
     const connected = sessionStorage.getItem('walletConnected') === 'true';
     // console.log("Checking wallet connection status:", connected); // Keep for debugging if needed
     return connected;
- }
+}
 
  function redirectToWalletPage() {
      console.log("Redirecting to wallet connection page.");

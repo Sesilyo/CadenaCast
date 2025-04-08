@@ -3,9 +3,9 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     // --- !!! CONFIGURATION FOR THIS POSITION !!! ---
-    const expectedPositionId = 'secretary';          // *** CHANGED ***
-    const positionDisplayName = 'Secretary';         // *** CHANGED ***
-    const containerElementId = 'secretary-candidates'; // *** CHANGED *** (MUST MATCH ID in CBC-sec-vote-page.html)
+    const expectedPositionId = 'secretary';
+    const positionDisplayName = 'Secretary';
+    const containerElementId = 'secretary-candidates'; //
     // ----------------------------------------------
 
     console.log(`[${positionDisplayName}] Loading vote page.`);

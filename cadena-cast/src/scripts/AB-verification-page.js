@@ -16,9 +16,9 @@ const auth = firebase.auth();
 const db = firebase.firestore();
 
 // --- DOM Elements ---
-const form = document.getElementById('form1'); // Use the correct form ID from your HTML
+const form = document.getElementById('form1');
 const emailInput = document.getElementById('input-email');
-const sendButton = document.getElementById('send-verification-button'); // Use the correct button ID from your HTML
+const sendButton = document.getElementById('send-verification-button');
 const statusDiv = document.getElementById('verification-status');
 const spinner = document.getElementById('loading-spinner');
 
@@ -83,7 +83,6 @@ function getErrorMessage(error) {
             case 'auth/network-request-failed':
                  message = 'Network error. Please check your internet connection.';
                  break;
-            // Add more specific Firestore or Auth error codes as needed
         }
     }
     if (error.message.includes("National ID number has already been registered")) {
@@ -133,19 +132,16 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log("Received NID for verification:", submittedNID);
 
     if (form) {
-        // Renamed handler for clarity, as it now completes registration
         form.addEventListener('submit', handleFinalRegistrationStep);
         clearStatus(); // Clear status on load
     } else {
         console.error("Verification form (#form1) not found!");
-        // Optional: Display an error if the form isn't found
-        // document.body.insertAdjacentHTML('beforeend', '<p style="color:red; text-align:center;">Page Error: Verification form element is missing.</p>');
-    }
+         }
 });
 
 
 // --- Form Submission Handler (MODIFIED FOR PROTOTYPE - NO EMAIL VERIFICATION) ---
-async function handleFinalRegistrationStep(e) { // Renamed function
+async function handleFinalRegistrationStep(e) {
     e.preventDefault();
     clearStatus();
     const email = emailInput.value.trim();
@@ -206,7 +202,6 @@ async function handleFinalRegistrationStep(e) { // Renamed function
             ...pendingUserData,
             email: user.email,
             uid: user.uid,
-            // ***** CHANGE HERE: Set emailVerified to TRUE immediately *****
             emailVerified: true,
             // *************************************************************
             createdAt: firebase.firestore.FieldValue.serverTimestamp(),
@@ -229,18 +224,15 @@ async function handleFinalRegistrationStep(e) { // Renamed function
              // Allow continuation but log the error
         }
 
-        // 7. ***** CHANGE HERE: DO NOT Send Firebase Verification Email *****
+        // 7.
         console.log("Skipping email verification step for prototype.");
-        // await user.sendEmailVerification(actionCodeSettings); // <-- SKIPPED
-        // ***************************************************************
 
         // 8. Delete the pending registration document
         console.log(`Deleting pending registration document: pendingRegistrations/${submittedNID}`);
         await pendingDocRef.delete();
         console.log("Pending registration data deleted.");
 
-        // 9. ***** CHANGE HERE: DO NOT Sign out the user *****
-        // await auth.signOut(); // <-- SKIPPED
+        // 9.
         console.log("Skipping sign out for prototype flow.");
         // ***************************************************
 
@@ -249,7 +241,7 @@ async function handleFinalRegistrationStep(e) { // Renamed function
         setTimeout(() => {
             // Redirect to AA-login-page with a success message parameter
             window.location.href = 'AA-login-page.html?message=registration_successful';
-        }, 4000); // Wait 4 seconds before redirect
+        }, 4000); // 4 seconds before redirect
 
     } catch (error) {
         console.error('Registration process failed:', error);

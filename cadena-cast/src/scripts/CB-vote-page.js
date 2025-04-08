@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log(`[CBVotePage] User NID found: ${loggedInUserNID}`);
 
     // --- UI Elements ---
-    // (Keep element checks as before)
     const mainElement = document.getElementById('main');
     const positionLinksContainer = document.getElementById('pos');
     const positionLinks = document.querySelectorAll('.position-link');
@@ -34,9 +33,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- State ---
     let targetVotePage = '';
     let visibilityChangeListenerAttached = false;
-    let isVotingGloballyEnabled = false; // <<<--- Add state variable to track global status
+    let isVotingGloballyEnabled = false;
 
-    // --- Visibility Change Handler (Informational Only - Keep as before) ---
+    // --- Visibility Change Handler
     const handleVisibilityChange = () => { /* ... console.info logs ... */ if (document.hidden) { console.info("[CBVotePage] Position selection page hidden."); } else { console.info("[CBVotePage] Position selection page visible."); } };
     function attachVisibilityListener() { if (!visibilityChangeListenerAttached) { console.log("[CBVotePage] Attaching visibility listener."); document.addEventListener('visibilitychange', handleVisibilityChange); visibilityChangeListenerAttached = true; } }
     function detachVisibilityListener() { if (visibilityChangeListenerAttached) { console.log("[CBVotePage] Detaching visibility listener."); document.removeEventListener('visibilitychange', handleVisibilityChange); visibilityChangeListenerAttached = false; } }
