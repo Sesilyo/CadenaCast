@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (mainElForError) mainElForError.innerHTML = '<p style="color:red; text-align:center; font-weight:bold;">Admin Page Load Error: Missing Dependencies</p>';
       return;
   }
-   // --- Basic Admin Authentication Check (Placeholder - Replace with secure method!) ---
+   // --- Basic Admin Authentication Check ---
   const isAdmin = sessionStorage.getItem('isAdmin') === 'true'; // Using sessionStorage as placeholder
   if (!isAdmin) {
       console.warn("[Admin Dashboard] User is not identified as admin in sessionStorage. Blocking access.");
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- UI Elements ---
   const statusBanner = document.getElementById('status-banner');
-  const controlCards = document.querySelectorAll('.control-card'); // Use querySelectorAll
+  const controlCards = document.querySelectorAll('.control-card');
   const adminIdDisplay = document.getElementById('admin-ID-display');
   const modal = document.getElementById('modal');
   const modalTitle = document.getElementById('modal-title');
@@ -186,7 +186,8 @@ document.addEventListener('DOMContentLoaded', () => {
           case "startElection":
               // Check if resuming from PAUSED or starting new
               newStatus = "ONGOING";
-              confirmTitle = currentElectionStatus === "PAUSED" ? "Resume Election?" : "Start Election?";
+              confirmTitle = currentElectionStatus === "PAUSED" ? "Resume Election?"
+                                                                : "Start Election?";
               confirmBody = currentElectionStatus === "PAUSED"
                   ? "Are you sure you want to resume the election? Voting will become available again."
                   : "Are you sure you want to start the election? Voting will become available to users.";
@@ -214,11 +215,8 @@ document.addEventListener('DOMContentLoaded', () => {
                   console.log("[Admin Dashboard] Logging out admin...");
                   sessionStorage.removeItem('isAdmin'); // Clear placeholder flag
                   sessionStorage.removeItem('adminId'); // Clear admin ID
-                  // Add any other session cleanup if necessary
                   alert("You have been logged out.");
 
-                  // ***** CORRECTED REDIRECT PATH *****
-                  // Adjust '../../' based on BA-admin-dashboard.html's location relative to vanilla-pages
                   window.location.href = '../../vanilla-pages/AA-login-page.html';
                   // ***********************************
 
@@ -247,7 +245,6 @@ document.addEventListener('DOMContentLoaded', () => {
               statusBanner.className = 'status-updating'; // Optional styling for updating state
 
               // --- Call shared function to update Firestore ---
-              // NOTE: This will likely FAIL with "Permission Denied" until
               // proper admin authentication and Firestore rules are implemented.
               await setElectionStatus(newStatus);
               // -------------------------------------------------
@@ -332,4 +329,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initializeAdminDashboard(); // Run the initial setup
 
-}); // End DOMContentLoaded
+});

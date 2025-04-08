@@ -57,37 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    function attachVisibilityListener() {
-        if (!visibilityChangeListenerAttached) {
-            console.log(`[${positionDisplayName}] Attaching visibility change listener.`);
-            // Preload sound
-            try {
-                // !!! ADJUST PATH TO YOUR SOUND FILE !!!
-                tingSound = new Audio('../../assets/sounds/ting.wav'); // Or .mp3 etc.
-                tingSound.load(); // Start loading
-                console.log(`[${positionDisplayName}] Ting sound object created.`);
-            } catch (e) {
-                console.error("Could not create or load audio:", e);
-                tingSound = null;
-            }
-            document.addEventListener('visibilitychange', handleVisibilityChange);
-            visibilityChangeListenerAttached = true;
-        }
-    }
-
-    function detachVisibilityListener() {
-        if (visibilityChangeListenerAttached) {
-            console.log(`[${positionDisplayName}] Detaching visibility change listener.`);
-            document.removeEventListener('visibilitychange', handleVisibilityChange);
-            visibilityChangeListenerAttached = false;
-            if (tingSound) {
-                tingSound.pause(); // Stop playback if any
-                tingSound.src = ''; // Release resource potentially
-            }
-            tingSound = null; // Release audio object reference
-        }
-    }
-
     // --- Voting Status Check ---
     async function checkVotingStatusAndSetup() {
          console.log(`[${positionDisplayName}] Checking voting status...`);

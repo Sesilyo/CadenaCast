@@ -3,7 +3,7 @@
 
 // --- Firebase Config ---
 const firebaseConfig = {
-    apiKey: "AIzaSyARAZIOFSKWTYDnb3E3OO8U1jIeMuoj-CA", // Replace with your actual config if different
+    apiKey: "AIzaSyARAZIOFSKWTYDnb3E3OO8U1jIeMuoj-CA",
     authDomain: "testthon-5b972.firebaseapp.com",
     databaseURL: "https://testthon-5b972-default-rtdb.asia-southeast1.firebasedatabase.app",
     projectId: "testthon-5b972",
@@ -19,11 +19,11 @@ let auth = null; // Declare outside try block
 
 try {
     console.log("[Init] Attempting Firebase initialization...");
-    if (typeof firebase !== 'undefined' && !firebase.apps.length) { // Check if firebase exists first
+    if (typeof firebase !== 'undefined' && !firebase.apps.length) {
          firebase.initializeApp(firebaseConfig);
          console.log("[Init] Firebase App initialized.");
     } else if (typeof firebase !== 'undefined') {
-         firebase.app(); // Get existing app
+         firebase.app();
          console.log("[Init] Firebase App already initialized.");
     } else {
          throw new Error("Firebase SDK not loaded."); // Throw error if firebase object missing
@@ -54,7 +54,6 @@ try {
     if (initForm) {
         initForm.innerHTML = '<p style="color:red; text-align:center;">Application initialization failed. Cannot proceed.</p>';
     }
-    // Stop further script execution if Firebase fails critically
     throw new Error("Firebase Init Failed");
 }
 
@@ -62,26 +61,24 @@ try {
 // --- DOM Elements ---
 const form = document.getElementById("form1");
 const firstNameInput = document.getElementById("input-firstName");
-const suffixSelect = document.getElementById("input-suffix");
-const otherSuffixInput = document.getElementById("other-suffix");
+const suffixSelect   = document.getElementById("input-suffix");
+const otherSuffixInput  = document.getElementById("other-suffix");
 const backToDropdownBtn = document.getElementById("back-to-dropdown");
-const middleNameInput = document.getElementById("input-middleName");
+const middleNameInput   = document.getElementById("input-middleName");
 const noMiddleNameCheckbox = document.getElementById("no-middle-name");
-const lastNameInput = document.getElementById("input-lastName");
-const birthDateInput = document.getElementById("input-birthDate");
-const regionSelect = document.getElementById('region');
-const provinceSelect = document.getElementById('province');
-const citySelect = document.getElementById('city');
-const nationalIDInput = document.getElementById("input-nationalIDNumber");
-const continueButton = document.getElementById("continue-button");
+const lastNameInput    = document.getElementById("input-lastName");
+const birthDateInput   = document.getElementById("input-birthDate");
+const regionSelect     = document.getElementById('region');
+const provinceSelect   = document.getElementById('province');
+const citySelect       = document.getElementById('city');
+const nationalIDInput  = document.getElementById("input-nationalIDNumber");
+const continueButton   = document.getElementById("continue-button");
 const statusMessageDiv = document.getElementById("status-message");
-const loadingSpinner = document.getElementById("loading-spinner");
+const loadingSpinner   = document.getElementById("loading-spinner");
 
-// --- Location Data (Using original placeholders - Update with your actual data) ---
 const locationData = {
     'Region A': { 'Province A1': ['City A1-1', 'City A1-2'], 'Province A2': ['City A2-1', 'City A2-2'] },
     'Region B': { 'Province B1': ['City B1-1', 'City B1-2'], 'Province B2': ['City B2-1', 'City B2-2'] },
-    // !!! Add your actual regions, provinces, and cities here !!!
 };
 
 // --- Admin Configuration ---
@@ -241,9 +238,9 @@ if (form) {
         setLoading(true); // Show spinner, disable form
 
         const currentNationalID = nationalIDInput.value.trim();
-        const currentFirstName = firstNameInput.value.trim();
-        const currentLastName = lastNameInput.value.trim();
-        const currentBirthDate = birthDateInput.value; // Assumes YYYY-MM-DD format
+        const currentFirstName  = firstNameInput.value.trim();
+        const currentLastName   = lastNameInput.value.trim();
+        const currentBirthDate  = birthDateInput.value; // Assumes YYYY-MM-DD format
 
         if (!currentNationalID) {
             showStatus("National ID Card Number is required.");
@@ -368,14 +365,13 @@ if (form) {
                 }
 
                 // --- Check Email Verification Status ---
-                // IMPORTANT: Ensure 'emailVerified' field exists and is reliably set in your user documents upon successful registration/verification
-                if (!storedUserData.emailVerified) { // Check the field from Firestore
+                
+                if (!storedUserData.emailVerified) {
                      console.log("User email not marked as verified in Firestore user document.");
-                     // Provide a more helpful message
                      alert("Login Failed: Your account registration is not yet complete or verified. Please check your email for verification steps or contact support if you already verified.");
                      showStatus("Login Failed: Account not verified.", true);
-                     setLoading(false); // Re-enable form
-                     return; // Stop login process
+                     setLoading(false);
+                     return;
                 }
 
                 // --- SUCCESSFUL REGULAR USER LOGIN ---
