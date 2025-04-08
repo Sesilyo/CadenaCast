@@ -240,7 +240,7 @@ async function handleFinalRegistrationStep(e) {
         showStatus(`Success! Registration complete for ${email}. You can now log in using your National ID. Redirecting...`, false); // Changed message
         setTimeout(() => {
             // Redirect to AA-login-page with a success message parameter
-            window.location.href = 'AA-login-page.html?message=registration_successful';
+            window.location.href = '../../../../AA-login-page.html?message=registration_successful';
         }, 4000); // 4 seconds before redirect
 
     } catch (error) {

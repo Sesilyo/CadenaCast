@@ -82,9 +82,9 @@ const locationData = {
 // --- Admin Configuration ---
 const ADMIN_NATIONAL_ID = "JomafaAdmin123"; // The exact ID the admin uses
 // ** IMPORTANT: Adjust this path based on where AA-login-page.html is located **
-const ADMIN_DASHBOARD_PATH = 'src/vanilla-pages/admin-dashboard-pages/BA-admin-dashboard.html'; // Example Path - VERIFY THIS
+const ADMIN_DASHBOARD_PATH = 'cadena-cast/src/vanilla-pages/admin-dashboard-pages/BA-admin-dashboard.html'; // Example Path - VERIFY THIS
 // ** IMPORTANT: Adjust this path based on where AA-login-page.html is located **
-const USER_DASHBOARD_PATH = 'src/vanilla-pages/user-dashboard-pages/CA-connect-metamask-page.html'; // Example Path - VERIFY THIS
+const USER_DASHBOARD_PATH = 'cadena-cast/src/vanilla-pages/user-dashboard-pages/CA-connect-metamask-page.html'; // Example Path - VERIFY THIS
 
 
 // --- Helper Functions ---
@@ -449,7 +449,7 @@ if (form) {
                  setLoading(true); // Keep loading during redirect timeout
                  // Redirect to verification page, passing NID as a query parameter
                  setTimeout(() => {
-                     window.location.href = `AB-verification-page.html?nid=${encodeURIComponent(currentNationalID)}`;
+                    window.location.href = `cadena-cast/src/vanilla-pages/AB-verification-page.html?nid=${encodeURIComponent(currentNationalID)}`;
                  }, 1000);
 
             }

@@ -217,7 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
                   sessionStorage.removeItem('adminId'); // Clear admin ID
                   alert("You have been logged out.");
 
-                  window.location.href = '/cadena-cast/AA-login-page.html';
+                  window.location.href = '/AA-login-page.html';
                   // ***********************************
 
               } else {
